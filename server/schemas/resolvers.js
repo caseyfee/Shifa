@@ -49,7 +49,7 @@ const resolvers = {
         { patientname: medicalHistoryAuthor },
         { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
-
+        console.log("----- \n", medicalHistory);
       return medicalHistory;
     },
     addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
