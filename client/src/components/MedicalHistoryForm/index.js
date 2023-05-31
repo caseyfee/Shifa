@@ -7,19 +7,19 @@ import { QUERY_THOUGHTS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+const MedicalHistoryForm = () => {
+  const [medicalHistoryText, setMedicalHistoryText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    update(cache, { data: { addThought } }) {
+  const [addMedicalHistory, { error }] = useMutation(ADD_THOUGHT, {
+    update(cache, { data: { addMedicalHistory } }) {
       try {
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { medicalHistorys } = cache.readQuery({ query: QUERY_THOUGHTS });
 
         cache.writeQuery({
           query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] },
+          data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
         });
       } catch (e) {
         console.error(e);
@@ -31,14 +31,14 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { data } = await addMedicalHistory({
         variables: {
-          thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          medicalHistoryText,
+          medicalHistoryAuthor: Auth.getProfile().data.patientname,
         },
       });
 
-      setThoughtText('');
+      setMedicalHistoryText('');
     } catch (err) {
       console.error(err);
     }
@@ -47,8 +47,8 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
-      setThoughtText(value);
+    if (name === 'medicalHistoryText' && value.length <= 280) {
+      setMedicalHistoryText(value);
       setCharacterCount(value.length);
     }
   };
@@ -72,9 +72,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="medicalHistoryText"
+                placeholder="Here's a new medicalHistory..."
+                value={medicalHistoryText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -83,7 +83,7 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Add MedicalHistory
               </button>
             </div>
             {error && (
@@ -95,7 +95,7 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your medicalHistorys. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -103,4 +103,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default MedicalHistoryForm;

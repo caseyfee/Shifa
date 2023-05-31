@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query patient($patientname: String!) {
+    patient(patientname: $patientname) {
       _id
-      username
+      patientname
       email
-      thoughts {
+      medicalHistorys {
         _id
-        thoughtText
+        medicalHistoryText
         createdAt
       }
     }
@@ -16,22 +16,22 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+  query getMedicalHistorys {
+    medicalHistorys {
       _id
-      thoughtText
-      thoughtAuthor
+      medicalHistoryText
+      medicalHistoryAuthor
       createdAt
     }
   }
 `;
 
 export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+  query getSingleMedicalHistory($medicalHistoryId: ID!) {
+    medicalHistory(medicalHistoryId: $medicalHistoryId) {
       _id
-      thoughtText
-      thoughtAuthor
+      medicalHistoryText
+      medicalHistoryAuthor
       createdAt
       comments {
         _id

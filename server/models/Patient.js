@@ -1,18 +1,12 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const dateFormat = require('../utils/dateFormat');
 
 const patientSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-},
-username: {
+  patientname: {
     type: String,
     required: true,
     unique: true,
-    // trim: true,
+    trim: true,
   },
   email: {
     type: String,
@@ -25,40 +19,10 @@ username: {
     required: true,
     minlength: 5,
   },
-  height:{ 
-   type: Number,
-},
-weight:{ 
-    type: Number,
- },
- illness:{ 
-    type: String,
- },
-  drNotes: [
-    {
-      noteText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      noteAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
-
-  
-  doctors: [
+  medicalHistorys: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Doctor',
+      ref: 'MedicalHistory',
     },
   ],
 });

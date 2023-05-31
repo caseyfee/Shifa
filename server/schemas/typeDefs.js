@@ -1,60 +1,52 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Doctor {
-    _id: ID
-    name: String
-    username: String
-    email: String
-    password: String
-    patients: [Patient]!
-  }
-
   type Patient {
     _id: ID
-    name: String
-    username: String
+    patientname: String
     email: String
     password: String
-    height: Number
-    weight: Number
-    illness: String
-    doctors: [Doctor]!
-    drnotes: [DrNote]!
+    medicalHistorys: [MedicalHistory]
   }
 
-  type DrNote {
+  type MedicalHistory {
     _id: ID
-    noteText: String
-    noteAuthor: String
+    medicalHistoryText: String
+    medicalHistoryAuthor: String
+    createdAt: String
+    comments: [Comment]
+  }
+
+  type Comment {
+    _id: ID
+    commentText: String
+    commentAuthor: String
     createdAt: String
   }
 
   type Auth {
     token: ID!
-    doctor: Doctor
+    patient: Patient
   }
 
-
-# CHECK WITH OUR GROUP WHAT EXACTLY NEED TO QUERY:
   type Query {
-    doctors: [Doctor]
-    doctor(username: String!): Doctor
-    patients(username: String): [Patient]
-    patient(patientId: ID!): Patient
+    patients: [Patient]
+    patient(patientname: String!): Patient
+    medicalHistorys(patientname: String): [MedicalHistory]
+    medicalHistory(medicalHistoryId: ID!): MedicalHistory
   }
 
   type Mutation {
-    addDoctor(username: String!, email: String!, password: String!): Auth
+    addPatient(patientname: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addPatient(patientText: String!, patientAuthor: String!): Patient
-    addDrNote(
-      patientId: ID!
-      drnoteText: String!
-      drnoteAuthor: String!
-    ): Patient
-    removePatient(patientId: ID!): Patient
-    removeDrNote(patientId: ID!, drnoteId: ID!): Patient
+    addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
+    addComment(
+      medicalHistoryId: ID!
+      commentText: String!
+      commentAuthor: String!
+    ): MedicalHistory
+    removeMedicalHistory(medicalHistoryId: ID!): MedicalHistory
+    removeComment(medicalHistoryId: ID!, commentId: ID!): MedicalHistory
   }
 `;
 

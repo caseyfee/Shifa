@@ -4,32 +4,32 @@ export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      user {
+      patient {
         _id
-        username
+        patientname
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addPatient($patientname: String!, $email: String!, $password: String!) {
+    addPatient(patientname: $patientname, email: $email, password: $password) {
       token
-      user {
+      patient {
         _id
-        username
+        patientname
       }
     }
   }
 `;
 
 export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!, $thoughtAuthor: String!) {
-    addThought(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
+  mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
+    addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
       _id
-      thoughtText
-      thoughtAuthor
+      medicalHistoryText
+      medicalHistoryAuthor
       createdAt
       comments {
         _id
@@ -41,18 +41,18 @@ export const ADD_THOUGHT = gql`
 
 export const ADD_COMMENT = gql`
   mutation addComment(
-    $thoughtId: ID!
+    $medicalHistoryId: ID!
     $commentText: String!
     $commentAuthor: String!
   ) {
     addComment(
-      thoughtId: $thoughtId
+      medicalHistoryId: $medicalHistoryId
       commentText: $commentText
       commentAuthor: $commentAuthor
     ) {
       _id
-      thoughtText
-      thoughtAuthor
+      medicalHistoryText
+      medicalHistoryAuthor
       createdAt
       comments {
         _id
