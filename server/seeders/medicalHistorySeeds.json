@@ -1,0 +1,42 @@
+[
+  {
+    "medicalHistoryText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
+    "medicalHistoryAuthor": "Brian Kernighan"
+  },
+  {
+    "medicalHistoryText": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+    "medicalHistoryAuthor": "Max Kanat-Alexander"
+  },
+  {
+    "medicalHistoryText": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
+    "medicalHistoryAuthor": "Why The Lucky Stiff"
+  },
+  {
+    "medicalHistoryText": "I'm not a great programmer; I'm just a good programmer with great habits.",
+    "medicalHistoryAuthor": "Kent Beck"
+  },
+  {
+    "medicalHistoryText": "Walking on water and developing software from a specification are easy if both are frozen.",
+    "medicalHistoryAuthor": "Edward V. Berard"
+  },
+  {
+    "medicalHistoryText": "The most disastrous thing that you can ever learn is your first programming language.",
+    "medicalHistoryAuthor": "Alan Kay"
+  },
+  {
+    "medicalHistoryText": "The most important property of a program is whether it accomplishes the intention of its patient.",
+    "medicalHistoryAuthor": "C.A.R. Hoare"
+  },
+  {
+    "medicalHistoryText": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
+    "medicalHistoryAuthor": "David Thomas"
+  },
+  {
+    "medicalHistoryText": "If you optimize everything, you will always be unhappy.",
+    "medicalHistoryAuthor": "Donald Knuth"
+  },
+  {
+    "medicalHistoryText": "It's not a bug; it's an undocumented feature.",
+    "medicalHistoryAuthor": "Lernantino"
+  }
+]

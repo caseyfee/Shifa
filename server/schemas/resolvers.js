@@ -1,65 +1,62 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Doctor, Patient } = require('../models');
+const { Patient, MedicalHistory } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  
-  // Query used to get
   Query: {
-    doctors: async () => {
-      return Doctor.find().populate('patients');
+    patients: async () => {
+      return Patient.find().populate('medicalHistorys');
     },
-    doctor: async (parent, { username }) => {
-      return Doctor.findOne({ username }).populate('patients');
+    patient: async (parent, { patientname }) => {
+      return Patient.findOne({ patientname }).populate('medicalHistorys');
     },
-    patients: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Patient.find(params).sort({ createdAt: -1 });
+    medicalHistorys: async (parent, { patientname }) => {
+      const params = patientname ? { patientname } : {};
+      return MedicalHistory.find(params).sort({ createdAt: -1 });
     },
-    patient: async (parent, { patientId }) => {
-      return Patient.findOne({ _id: patientId });
+    medicalHistory: async (parent, { medicalHistoryId }) => {
+      return MedicalHistory.findOne({ _id: medicalHistoryId });
     },
   },
 
-// Mutation which is the way to change data in GraphQL
   Mutation: {
-    addDoctor: async (parent, { username, email, password }) => {
-      const doctor = await Doctor.create({ username, email, password });
-      const token = signToken(doctor);
-      return { token, doctor };
+    addPatient: async (parent, { patientname, email, password }) => {
+      const patient = await Patient.create({ patientname, email, password });
+      const token = signToken(patient);
+      return { token, patient };
     },
     login: async (parent, { email, password }) => {
-      const doctor = await Doctor.findOne({ email });
+      const patient = await Patient.findOne({ email });
 
-      if (!doctor) {
-        throw new AuthenticationError('No user found with this email address');
+      if (!patient) {
+        throw new AuthenticationError('No patient found with this email address');
       }
 
-      const correctPw = await doctor.isCorrectPassword(password);
+      const correctPw = await patient.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect password');
+        throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken(doctor);
+      const token = signToken(patient);
 
-      return { token, doctor };
+      return { token, patient };
     },
-    addPatient: async (parent, { patientText, patientAuthor }) => {
-      const patient = await Patient.create({ patientText, patientAuthor });
+    addMedicalHistory: async (parent, { medicalHistoryText, medicalHistoryAuthor }) => {
+      const medicalHistory = await MedicalHistory.create({ medicalHistoryText, medicalHistoryAuthor });
 
-      await Doctor.findOneAndUpdate(
-        { username: patientAuthor },
-        { $addToSet: { patients: patient._id } }
+      await Patient.findOneAndUpdate(
+        { patientname: medicalHistoryAuthor },
+        { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
 
-      return patient;
+      return medicalHistory;
     },
-    addDrNote: async (parent, { patientId, drnoteText, drnoteAuthor }) => {
-      return Patient.findOneAndUpdate(
-        { _id: patientId },
+    addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
+      return MedicalHistory.findOneAndUpdate(
+        { _id: medicalHistoryId },
         {
-          $addToSet: { drnotes: { drnoteText, drnoteAuthor } },
+          $addToSet: { comments: { commentText, commentAuthor } },
         },
         {
           new: true,
@@ -67,14 +64,13 @@ const resolvers = {
         }
       );
     },
-
-    removePatient: async (parent, { patientId }) => {
-      return Patient.findOneAndDelete({ _id: patientId });
+    removeMedicalHistory: async (parent, { medicalHistoryId }) => {
+      return MedicalHistory.findOneAndDelete({ _id: medicalHistoryId });
     },
-    removeDrNote: async (parent, { patientId, drnoteId }) => {
-      return Patient.findOneAndUpdate(
-        { _id: patientId },
-        { $pull: { drnotes: { _id: drnoteId } } },
+    removeComment: async (parent, { medicalHistoryId, commentId }) => {
+      return MedicalHistory.findOneAndUpdate(
+        { _id: medicalHistoryId },
+        { $pull: { comments: { _id: commentId } } },
         { new: true }
       );
     },
