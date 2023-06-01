@@ -55,21 +55,101 @@ const MedicalHistoryForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>New Patient Medical History Form</h3>
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
+
+          {/* <p
+            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
+              }`}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
+
+
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+            className="flex-col-1 align-center"
             onSubmit={handleFormSubmit}
           >
+            <p>Patient Information</p>
+
+            <div class="mb-6">
+              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+            <div class="mb-6">
+              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+
+            <div class="mb-6">
+              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+
+            <div class="mb-6">
+              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+
+            <div class="mb-6">
+              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
+              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+
+
+            <p>Symptoms</p>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Abdominal pain</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Body Aches</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chest Pain</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cough</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Diarrhea</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Difficulty Breathing</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fatigue</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fever</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nasal Congestion</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nausea</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sore throat</label>
+            </div>
+            <div class="flex items-center mb-4">
+              <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vomiting</label>
+            </div>
+
+            <p>Other:</p>
             <div className="col-12 col-lg-9">
               <textarea
                 name="medicalHistoryText"
