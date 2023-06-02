@@ -1,0 +1,68 @@
+[
+  {
+    "userName": "Brian Kernighan",
+    "email": "bkernighan@email.com",
+    "password": "password01",
+    "doctor": false
+  },
+  {
+    "userName": "Max Alexander",
+    "email": "mkanatalexander@email.com",
+    "password": "password02",
+    "doctor": false
+  },
+  {
+    "userName": "Noah Smith",
+    "email": "noah@email.com",
+    "password": "password03",
+    "doctor": true
+  },
+  {
+    "userName": "Emily Pearson",
+    "email": "kbeck@email.com",
+    "password": "password04",
+    "doctor": true
+  },
+  {
+    "userName": "Susan V. Berard",
+    "email": "svberard@email.com",
+    "password": "password05",
+    "doctor": false
+  },
+  {
+    "userName": "Alan Kay",
+    "email": "akay@email.com",
+    "password": "password06",
+    "doctor": true
+  },
+  {
+    "userName": "C.A.R. Hoare",
+    "email": "choare@email.com",
+    "password": "password07",
+    "doctor": false
+  },
+  {
+    "userName": "David Thomas",
+    "email": "dthomas@email.com",
+    "password": "password08",
+    "doctor": false
+  },
+  {
+    "userName": "Donald Knuth",
+    "email": "dknuth@email.com",
+    "password": "password09",
+    "doctor": true
+  },
+  {
+    "userName": "Lernantino",
+    "email": "lernantino@email.com",
+    "password": "password10",
+    "doctor": false
+  },
+  {
+    "userName": "Mary Jones",
+    "email": "m.jones@email.com",
+    "password": "password11",
+    "doctor": false
+  }
+]
