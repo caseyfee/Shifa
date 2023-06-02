@@ -12,6 +12,27 @@ const MedicalHistoryForm = () => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
+  const formFields = [
+    {key: "firstName", 
+    label: "First Name"
+  }, {
+    key: "lastName", label: "Last Name"
+  }, {
+    key: "gender", label: "Gender"
+  }, {
+    key: "age", label: "Age"
+  }, {
+    key: "dob", label: "Date Of Birth"
+  }]
+
+  const [userHistory, setUserHistory] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    age: "",
+    dob: ""
+  })
+
   const [addMedicalHistory, { error }] = useMutation(ADD_THOUGHT, {
     update(cache, { data: { addMedicalHistory } }) {
       try {
@@ -43,15 +64,18 @@ const MedicalHistoryForm = () => {
       console.error(err);
     }
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     if (name === 'medicalHistoryText' && value.length <= 280) {
       setMedicalHistoryText(value);
       setCharacterCount(value.length);
+    } else if (formFields.includes(name)) {
+
     }
   };
+
+
 
   return (
     <div>
@@ -60,93 +84,68 @@ const MedicalHistoryForm = () => {
       {Auth.loggedIn() ? (
         <>
 
-          {/* <p
-            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
-              }`}
-          >
-            Character Count: {characterCount}/280
-          </p> */}
-
-
-          <form
+            <form
             className="flex-col-1 align-center"
             onSubmit={handleFormSubmit}
           >
             <p>Patient Information</p>
 
-            <div class="mb-6">
-              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            </div>
-            <div class="mb-6">
-              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            </div>
-
-            <div class="mb-6">
-              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            </div>
-
-            <div class="mb-6">
-              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
-              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            </div>
-
-            <div class="mb-6">
-              <label for="First Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
-              <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            </div>
+            {formFields.map(({label, key}) => {
+              return <div className="mb-6">
+                <label for={key} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
+                <input type="text" id={key} name={key} value={userHistory[key]} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+              </div>
+            })}
 
 
             <p>Symptoms</p>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Abdominal pain</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Abdominal pain</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Body Aches</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Body Aches</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chest Pain</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chest Pain</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cough</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cough</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Diarrhea</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Diarrhea</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Difficulty Breathing</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Difficulty Breathing</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fatigue</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fatigue</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fever</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fever</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nasal Congestion</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nasal Congestion</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nausea</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nausea</label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sore throat</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sore throat</label>
             </div>
-            <div class="flex items-center mb-4">
+            <div className="flex items-center mb-4">
               <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vomiting</label>
+              <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vomiting</label>
             </div>
 
             <p>Other:</p>

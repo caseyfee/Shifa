@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import Image from "../images/global-healthcare.avif";
 
 import MedicalHistoryList from '../components/MedicalHistoryList';
 import MedicalHistoryForm from '../components/MedicalHistoryForm';
@@ -42,7 +43,7 @@ const Home = () => {
             <>
                <div className="col-12 col-md-10 mb-3 p-3">
           <img
-            src="/"
+            src={Image}
             alt="global health care"
           />
 
