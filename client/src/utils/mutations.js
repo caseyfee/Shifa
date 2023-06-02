@@ -24,7 +24,7 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
+export const ADD_MEDICALHIST = gql`
   mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
     addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
       _id
