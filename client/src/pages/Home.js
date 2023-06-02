@@ -1,18 +1,18 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 import Image from "../images/global-healthcare.avif";
 
-import MedicalHistoryList from '../components/MedicalHistoryList';
+// import MedicalHistoryList from '../components/MedicalHistoryList';
 import MedicalHistoryForm from '../components/MedicalHistoryForm';
 
 import Auth from '../utils/auth';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+// import { QUERY_THOUGHTS } from '../utils/queries';
 
 const Home = () => {
 
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const medicalHistorys = data?.medicalHistorys || [];
+  // const { loading, data } = useQuery(QUERY_THOUGHTS);
+  // const medicalHistorys = data?.medicalHistorys || [];
 
   return (
     <main>
