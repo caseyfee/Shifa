@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import Image from "../images/global-healthcare.avif";
 
 // import MedicalHistoryList from '../components/MedicalHistoryList';
@@ -14,7 +14,7 @@ const Home = () => {
 
   const { loading, data } = useQuery(QUERY_MEDICALHISTORIES);
   const medicalHistorys = data?.medicalHistorys || [];
-main
+
 
   return (
     <main>
