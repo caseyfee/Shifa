@@ -7,13 +7,13 @@ import { useQuery } from '@apollo/client';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+import { QUERY_SINGLE_MEDICALHIST } from '../utils/queries';
 
 const SingleMedicalHistory = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { medicalHistoryId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
+  const { loading, data } = useQuery(QUERY_SINGLE_MEDICALHIST, {
     // pass URL parameter
     variables: { medicalHistoryId: medicalHistoryId },
   });

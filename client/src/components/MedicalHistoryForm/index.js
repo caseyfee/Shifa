@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries';
+import { ADD_MEDICALHIST } from '../../utils/mutations';
+import { QUERY_MEDICALHISTORIES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -33,13 +33,13 @@ const MedicalHistoryForm = () => {
     dob: ""
   })
 
-  const [addMedicalHistory, { error }] = useMutation(ADD_THOUGHT, {
+  const [addMedicalHistory, { error }] = useMutation(ADD_MEDICALHIST, {
     update(cache, { data: { addMedicalHistory } }) {
       try {
-        const { medicalHistorys } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { medicalHistorys } = cache.readQuery({ query: QUERY_MEDICALHISTORIES });
 
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
+          query: QUERY_MEDICALHISTORIES,
           data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
         });
       } catch (e) {
