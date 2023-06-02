@@ -1,19 +1,19 @@
 const db = require('../config/connection');
-const { Patient, MedicalHistory } = require('../models');
+const { User, MedicalHistory } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const medicalHistorySeeds = require('./medicalHistorySeeds.json');
 
 db.once('open', async () => {
   try {
     await MedicalHistory.deleteMany({});
-    await Patient.deleteMany({});
+    await User.deleteMany({});
 
-    await Patient.create(userSeeds);
+    await User.create(userSeeds);
 
     for (let i = 0; i < medicalHistorySeeds.length; i++) {
       const { _id, medicalHistoryAuthor } = await MedicalHistory.create(medicalHistorySeeds[i]);
-      const patient = await Patient.findOneAndUpdate(
-        { patientname: medicalHistoryAuthor },
+      const user = await User.findOneAndUpdate(
+        { username: medicalHistoryAuthor },
         {
           $addToSet: {
             medicalHistorys: _id,
