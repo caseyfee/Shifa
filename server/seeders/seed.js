@@ -1,6 +1,6 @@
 const db = require('../config/connection');
 const { Patient, MedicalHistory } = require('../models');
-const patientSeeds = require('./patientSeeds.json');
+const userSeeds = require('./userSeeds.json');
 const medicalHistorySeeds = require('./medicalHistorySeeds.json');
 
 db.once('open', async () => {
@@ -8,7 +8,7 @@ db.once('open', async () => {
     await MedicalHistory.deleteMany({});
     await Patient.deleteMany({});
 
-    await Patient.create(patientSeeds);
+    await Patient.create(userSeeds);
 
     for (let i = 0; i < medicalHistorySeeds.length; i++) {
       const { _id, medicalHistoryAuthor } = await MedicalHistory.create(medicalHistorySeeds[i]);
