@@ -15,7 +15,7 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
+export const QUERY_MEDICALHISTORIES = gql`
   query getMedicalHistorys {
     medicalHistorys {
       _id
@@ -26,7 +26,7 @@ export const QUERY_THOUGHTS = gql`
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
+export const QUERY_SINGLE_MEDICALHIST = gql`
   query getSingleMedicalHistory($medicalHistoryId: ID!) {
     medicalHistory(medicalHistoryId: $medicalHistoryId) {
       _id

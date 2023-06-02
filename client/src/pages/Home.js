@@ -7,11 +7,11 @@ import MedicalHistoryForm from '../components/MedicalHistoryForm';
 
 import Auth from '../utils/auth';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_MEDICALHISTORIES } from '../utils/queries';
 
 const Home = () => {
 
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_MEDICALHISTORIES);
   const medicalHistorys = data?.medicalHistorys || [];
 
   return (
