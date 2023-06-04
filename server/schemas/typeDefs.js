@@ -1,56 +1,52 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
+  type Patient {
     _id: ID
-    username: String
+    patientname: String
     email: String
     password: String
-    doctor: Boolean
     medicalHistorys: [MedicalHistory]
   }
 
   type MedicalHistory {
     _id: ID
-    firstName: String
-    lastName: String
-    age: Number
-    dob: String
-    # symptoms: Boolean
-    other: String
-    drNotes: [DrNote]
+    medicalHistoryText: String
+    medicalHistoryAuthor: String
+    createdAt: String
+    comments: [Comment]
   }
 
-  type DrNote {
+  type Comment {
     _id: ID
-    drNoteText: String
-    drNoteAuthor: String
+    commentText: String
+    commentAuthor: String
     createdAt: String
   }
 
   type Auth {
     token: ID!
-    user: User
+    patient: Patient
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    medicalHistorys(username: String): [MedicalHistory]
+    patients: [Patient]
+    patient(patientname: String!): Patient
+    medicalHistorys(patientname: String): [MedicalHistory]
     medicalHistory(medicalHistoryId: ID!): MedicalHistory
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addPatient(patientname: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
-    addDrNote(
+    addComment(
       medicalHistoryId: ID!
-      drNoteText: String!
-      drNoteAuthor: String!
+      commentText: String!
+      commentAuthor: String!
     ): MedicalHistory
     removeMedicalHistory(medicalHistoryId: ID!): MedicalHistory
-    removeDrNote(medicalHistoryId: ID!, drNoteId: ID!): MedicalHistory
+    removeComment(medicalHistoryId: ID!, commentId: ID!): MedicalHistory
   }
 `;
 
