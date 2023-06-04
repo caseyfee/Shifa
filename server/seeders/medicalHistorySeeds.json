@@ -15,42 +15,47 @@
     "gender":"male" ,
     "age": 19,
     "dob": "06-15-2004",
-    "symptoms": "Nausea"
+    "symptoms": ["Nausea"]
     },
   {
     "firstName":"Susan" ,
     "lastName":"Berard" ,
-    "gender":"male" ,
-    "age": 19,
-    "dob": "06-15-2004",
-    "symptoms": "Diarrhea",
+    "gender":"female" ,
+    "age": 21,
+    "dob": "07-03-2002",
+    "symptoms": ["Diarrhea"],
     "other": "headache"
   },
-
-
   {
-    "userName": "C.A.R. Hoare",
-    "email": "choare@email.com",
-    "password": "password07",
-    "doctor": false,
-    "other":""
+    "firstName":"Carole" ,
+    "lastName":"Hoare" ,
+    "gender":"female" ,
+    "age": 45,
+    "dob": "07-16-1978",
+    "symptoms": ["Abdominal pain", "Vomiting"]
   },
   {
-    "userName": "David Thomas",
-    "email": "dthomas@email.com",
-    "password": "password08",
-    "doctor": false
+    "firstName":"David" ,
+    "lastName":"Thomas" ,
+    "gender":"male" ,
+    "age": 35,
+    "dob": "08-30-1988",
+    "symptoms": ["Sore throat", "Nasal Congestion"]
   },
   {
-    "userName": "Lernantino",
-    "email": "lernantino@email.com",
-    "password": "password10",
-    "doctor": false
+    "firstName":"Lernantino" ,
+    "lastName":"Gonzales" ,
+    "gender":"male" ,
+    "age": 18,
+    "dob": "06-25-2005",
+    "other": "Itchy skin"
   },
   {
-    "userName": "Mary Jones",
-    "email": "m.jones@email.com",
-    "password": "password11",
-    "doctor": false
+    "firstName":"Mary" ,
+    "lastName":"Jones" ,
+    "gender":"female" ,
+    "age": 22,
+    "dob": "06-17-2001",
+    "symptoms": ["Body Aches", "Fatigue"]
   }
 ]

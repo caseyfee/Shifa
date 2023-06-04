@@ -2,33 +2,38 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const medicalHistorySchema = new Schema({
-  medicalHistoryText: {
-    type: String,
-    required: 'You need to leave a medicalHistory!',
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
-  },
-  medicalHistoryAuthor: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  },
-  comments: [
+
+firstName: {
+  type: String,
+  required: true,
+},
+lastName: {
+  type: String,
+  required: true,
+},
+age: Number,
+dob: {
+  type: String,
+  required: true,
+},
+// symptoms: {
+// type: Boolean
+// },
+other: {
+  type: String,
+  minlength: 1,
+  maxlength: 280,
+  trim: true
+},
+drNote: [
     {
-      commentText: {
+      drNoteText: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
       },
-      commentAuthor: {
+      drNoteAuthor: {
         type: String,
         required: true,
       },
