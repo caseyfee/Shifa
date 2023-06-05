@@ -28,6 +28,7 @@ export const ADD_MEDICALHIST = gql`
   mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
     addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
       _id
+      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt
@@ -51,6 +52,7 @@ export const ADD_COMMENT = gql`
       commentAuthor: $commentAuthor
     ) {
       _id
+      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt

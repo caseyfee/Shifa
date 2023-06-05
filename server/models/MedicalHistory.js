@@ -14,12 +14,19 @@ const medicalHistorySchema = new Schema({
     required: true,
     trim: true,
   },
+
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+
   comments: [
     {
       commentText: {

@@ -57,12 +57,14 @@ const MedicalHistoryForm = () => {
     try {
       const { data } = await addMedicalHistory({
         variables: {
+          userHistory,
           medicalHistoryText,
           medicalHistoryAuthor: Auth.getProfile().data.patientname,
         },
       });
 
       setMedicalHistoryText('');
+      setUserHistory('');
     } catch (err) {
       console.error(err);
     }
@@ -75,8 +77,7 @@ const MedicalHistoryForm = () => {
     if (name === 'medicalHistoryText') {
       setMedicalHistoryText(value);
     } else if (formFields.includes(name)) {
-      setUserHistory({ ...userHistory, [name]: value })
-    }
+      setUserHistory({ ...userHistory, [name]: value })    }
   };
 
   // render the page elements

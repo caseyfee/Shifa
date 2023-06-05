@@ -10,6 +10,7 @@ const resolvers = {
     patient: async (parent, { patientname }) => {
       return Patient.findOne({ patientname }).populate('medicalHistorys');
     },
+
     medicalHistorys: async (parent, { patientname }) => {
       const params = patientname ? { patientname } : {};
       return MedicalHistory.find(params).sort({ createdAt: -1 });
@@ -42,8 +43,8 @@ const resolvers = {
 
       return { token, patient };
     },
-    addMedicalHistory: async (parent, { medicalHistoryText, medicalHistoryAuthor }) => {
-      const medicalHistory = await MedicalHistory.create({ medicalHistoryText, medicalHistoryAuthor });
+    addMedicalHistory: async (parent, { firstName, medicalHistoryText, medicalHistoryAuthor }) => {
+      const medicalHistory = await MedicalHistory.create({ firstName, medicalHistoryText, medicalHistoryAuthor });
 
       await Patient.findOneAndUpdate(
         { patientname: medicalHistoryAuthor },
@@ -52,6 +53,7 @@ const resolvers = {
         console.log("----- \n", medicalHistory);
       return medicalHistory;
     },
+
     addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
       return MedicalHistory.findOneAndUpdate(
         { _id: medicalHistoryId },
