@@ -12,18 +12,26 @@ const Header = () => {
     <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Tech Thoughts</h1>
+
+          {/* Need to figure out how to link this to the home page? */}
+          
+          <Link className="text-light" to="home">
+            <h1 className="m-0">Shifa - We Care</h1>
           </Link>
-          <p className="m-0">Get into the mind of a programmer.</p>
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <span>Hey there, {Auth.getProfile().data.username}!</span>
+              <span>Welcome {Auth.getProfile().data.patientname}!</span>
+              {/* Need to update the onClick Action to take to the Appointment Page */}
+
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Appointment
+              </button>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
               </button>
+
             </>
           ) : (
             <>
