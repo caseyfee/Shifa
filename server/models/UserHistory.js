@@ -1,7 +1,4 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
-
-// NEEDS UPDATING
 
 const userHistorySchema = new Schema({
     firstName: {
@@ -20,23 +17,15 @@ const userHistorySchema = new Schema({
     },
     gender: {
         type: String,
-        required: 'You need to leave a first name!',
-        minlength: 1,
-        maxlength: 280,
         trim: true,
     },
     age: {
-        type: String,
-        required: 'You need to leave a first name!',
-        minlength: 1,
-        maxlength: 280,
+        type: String,   
         trim: true,
     },
     dob: {
         type: String,
         required: 'You need to leave a first name!',
-        minlength: 1,
-        maxlength: 280,
         trim: true,
     },
     symptomOne: {

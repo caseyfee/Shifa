@@ -43,10 +43,16 @@ export const ADD_MEDICALHIST = gql`
 
 export const Add_USERHIST = gql`
 
-  mutation addUserHistory($firstName: String!, $lastName: String!, $gender: String!, $age: String!, $dob: String!
+  mutation addUserHistory(
+    $firstName: String!, $lastName: String!, $gender: String!, $age: String!, $dob: String!
   $symptomOne: Boolean, $symptomTwo: Boolean, $symptomThree: Boolean, $symptomFour: Boolean, $symptomFive: Boolean, $symptomSix: Boolean,
-  $symptomOne: Boolean, $symptomSeven: Boolean, $symptomEight: Boolean, $symptomNine: Boolean, $symptomTen: Boolean,$symptomEleven: Boolean,$symptomTwelve: Boolean, ) {
-    addUserHistory(...UserHistorys) {
+  $symptomSeven: Boolean, $symptomEight: Boolean, $symptomNine: Boolean, $symptomTen: Boolean,$symptomEleven: Boolean,$symptomTwelve: Boolean, 
+  ) {
+    addUserHistory(
+      firstName: $firstName, lastName: $lastName, gender: $gender, age: $age, dob: $dob,
+  symptomOne: $symptomOne, symptomTwo: $symptomTwo, symptomThree: $symptomThree, symptomFour: $symptomFour, symptomFive: $symptomFive,symptomSix: $symptomSix,
+  symptomSeven: $symptomSeven, symptomEight: $symptomEight, symptomNine:$symptomNine, symptomTen: $symptomTen,symptomEleven: $symptomEleven, symptomTwelve: $symptomTwelve
+    ) {
       _id
       firstName
       lastName
@@ -83,7 +89,6 @@ export const ADD_COMMENT = gql`
       commentAuthor: $commentAuthor
     ) {
       _id
-      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt

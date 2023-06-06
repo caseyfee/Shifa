@@ -21,7 +21,7 @@ const resolvers = {
       const params = patientname ? { patientname } : {};
       return UserHistory.find(params).sort({ createdAt: -1 });
     },
-    userHistory: async (parent, { UserHistoryId }) => {
+    userHistory: async (parent, { userHistoryId }) => {
       return UserHistory.findOne({ _id: userHistoryId });
     },
   },
@@ -49,7 +49,7 @@ const resolvers = {
         return { token, patient };
       },
       addMedicalHistory: async (parent, { medicalHistoryText, medicalHistoryAuthor }) => {
-        const medicalHistory = await MedicalHistory.create({ firstName, medicalHistoryText, medicalHistoryAuthor });
+        const medicalHistory = await MedicalHistory.create({ medicalHistoryText, medicalHistoryAuthor });
 
         await Patient.findOneAndUpdate(
           { patientname: medicalHistoryAuthor },

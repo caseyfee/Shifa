@@ -7,7 +7,7 @@ export const QUERY_USER = gql`
       patientname
       email
       userHistorys {
-        {...UserHistorys}
+        {...UserHistory}
       }
       medicalHistorys {
         _id
