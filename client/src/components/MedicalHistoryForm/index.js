@@ -43,6 +43,7 @@ const MedicalHistoryForm = () => {
           query: QUERY_MEDICALHISTORIES,
           data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
         });
+        console.log(medicalHistorys);
       } catch (e) {
         console.error(e);
       }
@@ -56,10 +57,10 @@ const MedicalHistoryForm = () => {
     try {
       const { data } = await addMedicalHistory({
         variables: {
-          userHistory,
           medicalHistoryText,
           medicalHistoryAuthor: Auth.getProfile().data.patientname,
         },
+        
       });
 
       setMedicalHistoryText('');
