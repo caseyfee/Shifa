@@ -19,6 +19,7 @@ export const QUERY_MEDICALHISTORIES = gql`
   query getMedicalHistorys {
     medicalHistorys {
       _id
+      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt
@@ -30,6 +31,7 @@ export const QUERY_SINGLE_MEDICALHIST = gql`
   query getSingleMedicalHistory($medicalHistoryId: ID!) {
     medicalHistory(medicalHistoryId: $medicalHistoryId) {
       _id
+      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt

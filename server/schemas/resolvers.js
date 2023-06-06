@@ -1,17 +1,18 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, MedicalHistory } = require('../models');
+const { Patient, MedicalHistory } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find().populate('medicalHistorys');
+    patients: async () => {
+      return Patient.find().populate('medicalHistorys');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('medicalHistorys');
+    patient: async (parent, { patientname }) => {
+      return Patient.findOne({ patientname }).populate('medicalHistorys');
     },
-    medicalHistorys: async (parent, { username }) => {
-      const params = username ? { username } : {};
+
+    medicalHistorys: async (parent, { patientname }) => {
+      const params = patientname ? { patientname } : {};
       return MedicalHistory.find(params).sort({ createdAt: -1 });
     },
     medicalHistory: async (parent, { medicalHistoryId }) => {
@@ -20,43 +21,44 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+    addPatient: async (parent, { patientname, email, password }) => {
+      const patient = await Patient.create({ patientname, email, password });
+      const token = signToken(patient);
+      return { token, patient };
     },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const patient = await Patient.findOne({ email });
 
-      if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+      if (!patient) {
+        throw new AuthenticationError('No patient found with this email address');
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await patient.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken(user);
+      const token = signToken(patient);
 
-      return { token, user };
+      return { token, patient };
     },
-    addMedicalHistory: async (parent, { medicalHistoryText, medicalHistoryAuthor }) => {
-      const medicalHistory = await MedicalHistory.create({ medicalHistoryText, medicalHistoryAuthor });
+    addMedicalHistory: async (parent, { firstName, medicalHistoryText, medicalHistoryAuthor }) => {
+      const medicalHistory = await MedicalHistory.create({ firstName, medicalHistoryText, medicalHistoryAuthor });
 
-      await User.findOneAndUpdate(
-        { username: medicalHistoryAuthor },
+      await Patient.findOneAndUpdate(
+        { patientname: medicalHistoryAuthor },
         { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
         console.log("----- \n", medicalHistory);
       return medicalHistory;
     },
-    addDrNote: async (parent, { medicalHistoryId, drNoteText, drNoteAuthor }) => {
+
+    addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
       return MedicalHistory.findOneAndUpdate(
         { _id: medicalHistoryId },
         {
-          $addToSet: { drNotes: { drNoteText, drNoteAuthor } },
+          $addToSet: { comments: { commentText, commentAuthor } },
         },
         {
           new: true,
@@ -67,10 +69,10 @@ const resolvers = {
     removeMedicalHistory: async (parent, { medicalHistoryId }) => {
       return MedicalHistory.findOneAndDelete({ _id: medicalHistoryId });
     },
-    removeDrNote: async (parent, { medicalHistoryId, drNoteId }) => {
+    removeComment: async (parent, { medicalHistoryId, commentId }) => {
       return MedicalHistory.findOneAndUpdate(
         { _id: medicalHistoryId },
-        { $pull: { drNotes: { _id: drNoteId } } },
+        { $pull: { comments: { _id: commentId } } },
         { new: true }
       );
     },
