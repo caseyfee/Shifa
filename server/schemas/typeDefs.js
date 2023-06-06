@@ -9,13 +9,34 @@ const typeDefs = gql`
     medicalHistorys: [MedicalHistory]
     userHistorys: [UserHistory]
   }
+
 type UserHistory {
   _id: ID
   firstName: String
-  lastName: String,
-  gender: String,
-  age: String,
-  dob: String,
+  lastName: String
+  gender: String
+  age: String
+  dob: String
+  symptomOne: Boolean
+  symptomTwo: Boolean
+  symptomThree: Boolean
+  symptomFour: Boolean
+  symptomFive: Boolean
+  symptomSix: Boolean
+  symptomSeven: Boolean
+  symptomEight: Boolean
+  symptomNine: Boolean
+  symptomTen: Boolean
+  symptomEleven: Boolean
+  symptomTwelve: Boolean
+}
+
+input UserHistoryInput {
+  firstName: String
+  lastName: String
+  gender: String
+  age: String
+  dob: String
   symptomOne: Boolean
   symptomTwo: Boolean
   symptomThree: Boolean
@@ -55,8 +76,8 @@ type UserHistory {
     patient(patientname: String!): Patient
     medicalHistorys(patientname: String): [MedicalHistory]
     medicalHistory(medicalHistoryId: ID!): MedicalHistory
-    userHistorys((patientname: String): [UserHistory])
-    userHistory(userlHistoryId: ID!): UserHistory
+    userHistorys(patientname: String): [UserHistory]
+    userHistory(userHistoryId: ID!): UserHistory
 
   }
 
@@ -64,7 +85,7 @@ type UserHistory {
     addPatient(patientname: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
-    addUserHistory(...userHistorys): UserHistory  
+    addUserHistory(userHistory: UserHistoryInput): UserHistory  
     addComment(
       medicalHistoryId: ID!
       commentText: String!
