@@ -24,11 +24,12 @@ export const ADD_USER = gql`
   }
 `;
 
+
+
 export const ADD_MEDICALHIST = gql`
   mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
     addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
       _id
-      firstName
       medicalHistoryText
       medicalHistoryAuthor
       createdAt
@@ -39,6 +40,36 @@ export const ADD_MEDICALHIST = gql`
     }
   }
 `;
+
+export const Add_USERHIST = gql`
+
+  mutation addUserHistory($firstName: String!, $lastName: String!, $gender: String!, $age: String!, $dob: String!
+  $symptomOne: Boolean, $symptomTwo: Boolean, $symptomThree: Boolean, $symptomFour: Boolean, $symptomFive: Boolean, $symptomSix: Boolean,
+  $symptomOne: Boolean, $symptomSeven: Boolean, $symptomEight: Boolean, $symptomNine: Boolean, $symptomTen: Boolean,$symptomEleven: Boolean,$symptomTwelve: Boolean, ) {
+    addUserHistory(...UserHistorys) {
+      _id
+      firstName
+      lastName
+      gender
+      age
+      dob
+      symptomOne
+      symptomTwo
+      symptomThree
+      symptomFour
+      symptomFive
+      symptomSix
+      symptomSeven
+      symptomEight
+      symptomNine
+      symptomTen
+      symptomEleven
+      symptomTwelve
+    }
+  }
+`;
+
+
 
 export const ADD_COMMENT = gql`
   mutation addComment(

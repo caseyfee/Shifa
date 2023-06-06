@@ -7,12 +7,31 @@ const typeDefs = gql`
     email: String
     password: String
     medicalHistorys: [MedicalHistory]
+    userHistorys: [UserHistory]
   }
-
+type UserHistory {
+  _id: ID
+  firstName: String
+  lastName: String,
+  gender: String,
+  age: String,
+  dob: String,
+  symptomOne: Boolean
+  symptomTwo: Boolean
+  symptomThree: Boolean
+  symptomFour: Boolean
+  symptomFive: Boolean
+  symptomSix: Boolean
+  symptomSeven: Boolean
+  symptomEight: Boolean
+  symptomNine: Boolean
+  symptomTen: Boolean
+  symptomEleven: Boolean
+  symptomTwelve: Boolean
+}
 
   type MedicalHistory {
     _id: ID
-    firstName: String
     medicalHistoryText: String
     medicalHistoryAuthor: String
     createdAt: String
@@ -36,12 +55,16 @@ const typeDefs = gql`
     patient(patientname: String!): Patient
     medicalHistorys(patientname: String): [MedicalHistory]
     medicalHistory(medicalHistoryId: ID!): MedicalHistory
+    userHistorys((patientname: String): [UserHistory])
+    userHistory(userlHistoryId: ID!): UserHistory
+
   }
 
   type Mutation {
     addPatient(patientname: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addMedicalHistory(firstName: String!, medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
+    addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
+    addUserHistory(...userHistorys): UserHistory  
     addComment(
       medicalHistoryId: ID!
       commentText: String!
