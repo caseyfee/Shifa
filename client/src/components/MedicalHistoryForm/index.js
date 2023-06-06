@@ -19,19 +19,18 @@ const MedicalHistoryForm = () => {
     gender: "",
     age: "",
     dob: "",
-    symptomOne: "",
-    symptomTwo: "",
-    symptomThree: "",
-    symptomFour: "",
-    symptomFive: "",
-    symptomSix: "",
-    symptomSeven: "",
-    symptomEight: "",
-    symptomNine: "",
-    symptomTen: "",
-    symptomEleven: "",
-    symptomTwelve: "",
-
+    symptomOne: false,
+    symptomTwo: false,
+    symptomThree: false,
+    symptomFour: false,
+    symptomFive: false,
+    symptomSix: false,
+    symptomSeven: false,
+    symptomEight: false,
+    symptomNine: false,
+    symptomTen: false,
+    symptomEleven: false,
+    symptomTwelve: false
   });
 
 
@@ -72,12 +71,15 @@ const MedicalHistoryForm = () => {
 
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-
+    const { name, value, checked } = event.target;
+  
     if (name === 'medicalHistoryText') {
       setMedicalHistoryText(value);
-    } else if (formFields.includes(name)) {
-      setUserHistory({ ...userHistory, [name]: value })    }
+    }else if (formFields.includes(name)) {
+      setUserHistory({ ...userHistory, [name]: value})    
+    }else if(name.includes("symptom")){
+      setUserHistory({ ...userHistory, [name]: checked}) 
+    }
   };
 
   // render the page elements
@@ -95,13 +97,13 @@ const MedicalHistoryForm = () => {
             <p>Patient Information</p>
 
             {formFields.map(({ label, key }) => {
-              return <div className="mb-6">
+              return <div key={key} className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
                 <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   type="text"
                   id={key}
                   name={key}
-                  value={userHistory.formFields}
+                  value={userHistory[key]}
                   placeholder="Enter your information"
                   onChange={handleChange}>
                 </input>
@@ -111,14 +113,14 @@ const MedicalHistoryForm = () => {
             <p>Symptoms</p>
 
             {symptomChecks.map(({ label, key }) => {
-              return <div className="flex items-center ">
+              return <div key={key} className="flex items-center ">
                 <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   type="checkbox"
                   id={key}
                   name={key}
-                  value={userHistory.symptomChecks}
+                  checked={userHistory[key]}
                   onChange={handleChange} />
-                <label for="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
+                <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
               </div>
             })}
 
