@@ -9,14 +9,14 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+    <header className="fixed top-0 z-30 w-full p-1 bg-slate-800 shadow-xl flex items-center  space-x-3 md:inline-flex ">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
 
           {/* Need to figure out how to link this to the home page? */}
           
           <Link className="text-light" to="home">
-            <h1 className="m-0">Shifa - We Care</h1>
+            <h1 className="m-0">Shifa</h1>
           </Link>
         </div>
         <div>
