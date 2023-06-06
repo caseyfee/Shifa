@@ -25,9 +25,10 @@ const Header = () => {
               <span>Welcome {Auth.getProfile().data.patientname}!</span>
               {/* Need to update the onClick Action to take to the Appointment Page */}
 
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn-lg btn-light m-2" onClick={() => window.location.href = "/appointment"}>
                 Appointment
               </button>
+              
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
               </button>
