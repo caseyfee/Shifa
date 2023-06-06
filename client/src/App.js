@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleMedicalHistory from './pages/SingleMedicalHistory';
+import Appointment from './pages/Appointment';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -47,21 +48,25 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
+              <Route
+                path="/"
+                element={<Home />}
               />
-              <Route 
-                path="/login" 
-                element={<Login />} 
+              <Route
+                path="/login"
+                element={<Login />}
               />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
+              <Route
+                path="/signup"
+                element={<Signup />}
               />
-              <Route 
-                path="/medicalHistorys/:medicalHistoryId" 
-                element={<SingleMedicalHistory />} 
+              <Route
+                path="/medicalHistorys/:medicalHistoryId"
+                element={<SingleMedicalHistory />}
+              />
+              <Route
+                path="/appointment"
+                element={<Appointment />}
               />
             </Routes>
           </div>
