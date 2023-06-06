@@ -15,7 +15,6 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_MEDICALHISTORIES);
   const medicalHistorys = data?.medicalHistorys || [];
 
-
   return (
     <main>
       <div className="flex-row justify-center">

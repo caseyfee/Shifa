@@ -1,61 +1,42 @@
 [
   {
-    "firstName":"Brian" ,
-    "lastName":"Kernighan" ,
-    "gender":"male" ,
-    "age": 45,
-    "dob": "08-25-1978",
-    "symptoms": [
-      "Chest Pain", "Cough", "Difficulty Breathing"
-    ]
+    "medicalHistoryText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
+    "medicalHistoryAuthor": "Brian Kernighan"
   },
   {
-    "firstName":"Max" ,
-    "lastName":"Alexander" ,
-    "gender":"male" ,
-    "age": 19,
-    "dob": "06-15-2004",
-    "symptoms": ["Nausea"]
-    },
-  {
-    "firstName":"Susan" ,
-    "lastName":"Berard" ,
-    "gender":"female" ,
-    "age": 21,
-    "dob": "07-03-2002",
-    "symptoms": ["Diarrhea"],
-    "other": "headache"
+    "medicalHistoryText": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+    "medicalHistoryAuthor": "Max Kanat-Alexander"
   },
   {
-    "firstName":"Carole" ,
-    "lastName":"Hoare" ,
-    "gender":"female" ,
-    "age": 45,
-    "dob": "07-16-1978",
-    "symptoms": ["Abdominal pain", "Vomiting"]
+    "medicalHistoryText": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
+    "medicalHistoryAuthor": "Why The Lucky Stiff"
   },
   {
-    "firstName":"David" ,
-    "lastName":"Thomas" ,
-    "gender":"male" ,
-    "age": 35,
-    "dob": "08-30-1988",
-    "symptoms": ["Sore throat", "Nasal Congestion"]
+    "medicalHistoryText": "I'm not a great programmer; I'm just a good programmer with great habits.",
+    "medicalHistoryAuthor": "Kent Beck"
   },
   {
-    "firstName":"Lernantino" ,
-    "lastName":"Gonzales" ,
-    "gender":"male" ,
-    "age": 18,
-    "dob": "06-25-2005",
-    "other": "Itchy skin"
+    "medicalHistoryText": "Walking on water and developing software from a specification are easy if both are frozen.",
+    "medicalHistoryAuthor": "Edward V. Berard"
   },
   {
-    "firstName":"Mary" ,
-    "lastName":"Jones" ,
-    "gender":"female" ,
-    "age": 22,
-    "dob": "06-17-2001",
-    "symptoms": ["Body Aches", "Fatigue"]
+    "medicalHistoryText": "The most disastrous thing that you can ever learn is your first programming language.",
+    "medicalHistoryAuthor": "Alan Kay"
+  },
+  {
+    "medicalHistoryText": "The most important property of a program is whether it accomplishes the intention of its patient.",
+    "medicalHistoryAuthor": "C.A.R. Hoare"
+  },
+  {
+    "medicalHistoryText": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
+    "medicalHistoryAuthor": "David Thomas"
+  },
+  {
+    "medicalHistoryText": "If you optimize everything, you will always be unhappy.",
+    "medicalHistoryAuthor": "Donald Knuth"
+  },
+  {
+    "medicalHistoryText": "It's not a bug; it's an undocumented feature.",
+    "medicalHistoryAuthor": "Lernantino"
   }
 ]
