@@ -3,7 +3,7 @@ import { InlineWidget } from "react-calendly";
 
 const Appointment = () => {
     return (
-      <div className="App">
+      <div className="App h-full py-40">
         <InlineWidget url="https://calendly.com/shifa-bootcamp" />
       </div>
     );
