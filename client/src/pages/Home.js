@@ -23,8 +23,8 @@ const Home = () => {
   };
 
   return (
-    <main>
-      <div className="flex-row justify-center h-screen">
+    <main className="h-full py-40">
+      <div className="flex-row justify-center">
 
         {Auth.loggedIn() ? (
           <>
