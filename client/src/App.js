@@ -16,6 +16,9 @@ import Appointment from './pages/Appointment';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import Profile from './pages/Profile';
+// import { Link } from 'react-router-dom';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -63,6 +66,14 @@ function App() {
               <Route
                 path="/medicalHistorys/:medicalHistoryId"
                 element={<SingleMedicalHistory />}
+              />
+              <Route
+                path="/me"
+                element={<Profile />}
+              />
+              <Route
+                path="/profiles/:patientname"
+                element={<Profile />}
               />
               <Route
                 path="/appointment"

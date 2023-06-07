@@ -11,6 +11,10 @@ import Auth from '../../utils/auth';
 import formFields from './formFields';
 import symptomChecks from './symptoms';
 
+import Profile from '../../pages/Profile';
+
+
+
 const MedicalHistoryForm = () => {
 
   const [medicalHistoryText, setMedicalHistoryText] = useState('');
@@ -115,6 +119,13 @@ console.log(data);
     console.log(userHistory);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("medical history updated..");
+    console.log(userHistory);
+  }
+
+
   // render the page elements
   return (
     <div>
@@ -125,7 +136,7 @@ console.log(data);
 
           <form
             className="flex-col-1 align-center"
-            onSubmit={handleFormSubmit}
+            onSubmit={handleFormSubmit} 
           >
             <p>Patient Information</p>
 
@@ -171,7 +182,7 @@ console.log(data);
             </div>
 
             <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
+            <button to="/profiles/:patientname" className="btn btn-primary btn-block py-3" type="submit" onClick={handleSubmit}>
                 Add MedicalHistory
               </button>
             </div>
