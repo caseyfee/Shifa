@@ -3,14 +3,13 @@ const { Schema, model } = require('mongoose');
 const userHistorySchema = new Schema({
     firstName: {
         type: String,
-        required: 'You need to leave a first name!',
+        required: true,
         minlength: 1,
         maxlength: 280,
         trim: true,
     },
     lastName: {
         type: String,
-        required: 'You need to leave a first name!',
         minlength: 1,
         maxlength: 280,
         trim: true,
@@ -25,7 +24,6 @@ const userHistorySchema = new Schema({
     },
     dob: {
         type: String,
-        required: 'You need to leave a first name!',
         trim: true,
     },
     symptomOne: {

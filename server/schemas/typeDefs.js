@@ -85,7 +85,7 @@ input UserHistoryInput {
     addPatient(patientname: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
-    addUserHistory(userHistory: UserHistoryInput): UserHistory  
+    addUserHistory(userHistory: UserHistoryInput!): UserHistory  
     addComment(
       medicalHistoryId: ID!
       commentText: String!

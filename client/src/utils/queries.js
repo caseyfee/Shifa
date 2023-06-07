@@ -43,7 +43,7 @@ export const QUERY_USER = gql`
 }
 `;
 
-export const Query_USERHISTORIES = gql`
+export const QUERY_USERHISTORIES = gql`
 query getUserHistorys {
   userHistorys {
     _id
