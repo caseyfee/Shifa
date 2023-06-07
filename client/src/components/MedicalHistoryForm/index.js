@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_MEDICALHIST } from '../../utils/mutations';
 import { QUERY_MEDICALHISTORIES } from '../../utils/queries';
+import { ADD_USERHIST } from '../../utils/mutations';
+import { QUERY_USERHISTORIES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 import formFields from './formFields';
@@ -33,6 +35,11 @@ const MedicalHistoryForm = () => {
     symptomTwelve: false
   });
 
+  // setUserHistory ({
+  //   ...userHistory,
+  //   [label]: value,
+  // })
+
 
   const [addMedicalHistory, { error }] = useMutation(ADD_MEDICALHIST, {
     update(cache, { data: { addMedicalHistory } }) {
@@ -50,6 +57,22 @@ const MedicalHistoryForm = () => {
     },
   });
 
+  const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
+    update(cache, { data: { addUserHistory } }) {
+      try {
+        const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
+
+        cache.writeQuery({
+          query: QUERY_MEDICALHISTORIES,
+          data: { userHistorys: [addUserHistory, ...userHistory] },
+        });
+        console.log(userHistorys);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
   // event handler for the submit button
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -60,27 +83,36 @@ const MedicalHistoryForm = () => {
           medicalHistoryText,
           medicalHistoryAuthor: Auth.getProfile().data.patientname,
         },
-        
       });
 
-      setMedicalHistoryText('');
-      setUserHistory('');
+      await addUserHistory({
+        variables: {
+          userHistory
+        }
+      })
+console.log(data);
     } catch (err) {
       console.error(err);
     }
-  };
 
+    setMedicalHistoryText('');
+    setUserHistory('');
+    // Add in Success Message and Take them to page that shows their information
+    // in the database?
+  };
 
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
-  
+
     if (name === 'medicalHistoryText') {
       setMedicalHistoryText(value);
-    }else if (formFields.includes(name)) {
-      setUserHistory({ ...userHistory, [name]: value})    
-    }else if(name.includes("symptom")){
-      setUserHistory({ ...userHistory, [name]: checked}) 
+    } else if (name.includes("symptom")) {
+      setUserHistory({ ...userHistory, [name]: checked })
+    } else {
+      setUserHistory({ ...userHistory, [name]: value })
     }
+    console.log(name);
+    console.log(userHistory);
   };
 
   // render the page elements

@@ -59,11 +59,11 @@ const resolvers = {
         return medicalHistory;
       },
 
-      addUserHistory: async (parent, { ...UserHistorys }) => {
-        const medicalHistory = await UserHistory.create({ ...UserHistorys });
+      addUserHistory: async (parent, { userHistory }) => {
+        const medicalHistory = await UserHistory.create({ ...userHistory });
 
         await Patient.findOneAndUpdate(
-          // { patientname: medicalHistoryAuthor },
+          // { patientname: firstName },
           { $addToSet: { userHistorys: medicalHistory._id } }
         );
         console.log("----- \n", medicalHistory);
