@@ -1,22 +1,55 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+  type User {
+    firstName: String
+    lastName: String
+    email: String
+    fullName: String
+  }
+
   type Patient {
-    _id: ID
-    patientname: String
+    user: User
+    medicalHistorys: [MedicalHistory]
+    # userHistorys: [UserHistory]
+  }
+
+type MedicalHistory {
+  _id: ID
+  gender: String
+  age: String
+  dob: String
+  medicalHistoryText: String
+  symptomOne: Boolean
+  symptomTwo: Boolean
+  symptomThree: Boolean
+  symptomFour: Boolean
+  symptomFive: Boolean
+  symptomSix: Boolean
+  symptomSeven: Boolean
+  symptomEight: Boolean
+  symptomNine: Boolean
+  symptomTen: Boolean
+  symptomEleven: Boolean
+  symptomTwelve: Boolean
+  createdAt: String
+  comments: [Comment]
+}
+
+input UserCredentials{
+    firstName: String
+    lastName: String
     email: String
     password: String
-    medicalHistorys: [MedicalHistory]
-    userHistorys: [UserHistory]
-  }
+}
 
-type UserHistory {
-  _id: ID
-  firstName: String
-  lastName: String
+input MedicalHistoryInput {
+ patientID: ID
   gender: String
   age: String
   dob: String
+  medicalHistoryText: String
   symptomOne: Boolean
   symptomTwo: Boolean
   symptomThree: Boolean
@@ -31,65 +64,34 @@ type UserHistory {
   symptomTwelve: Boolean
 }
 
-input UserHistoryInput {
-  firstName: String
-  lastName: String
-  gender: String
-  age: String
-  dob: String
-  symptomOne: Boolean
-  symptomTwo: Boolean
-  symptomThree: Boolean
-  symptomFour: Boolean
-  symptomFive: Boolean
-  symptomSix: Boolean
-  symptomSeven: Boolean
-  symptomEight: Boolean
-  symptomNine: Boolean
-  symptomTen: Boolean
-  symptomEleven: Boolean
-  symptomTwelve: Boolean
-}
-
-  type MedicalHistory {
-    _id: ID
-    medicalHistoryText: String
-    medicalHistoryAuthor: String
-    createdAt: String
-    comments: [Comment]
-  }
 
   type Comment {
     _id: ID
     commentText: String
-    commentAuthor: String
+    commentAuthor: User
     createdAt: String
   }
 
   type Auth {
     token: ID!
-    patient: Patient
+    user: User!
   }
 
   type Query {
     patients: [Patient]
-    patient(patientname: String!): Patient
-    medicalHistorys(patientname: String): [MedicalHistory]
+    patient(patientId: ID!): Patient
+    medicalHistorys(patientId: ID!): [MedicalHistory]
     medicalHistory(medicalHistoryId: ID!): MedicalHistory
-    userHistorys(patientname: String): [UserHistory]
-    userHistory(userHistoryId: ID!): UserHistory
-
   }
 
   type Mutation {
-    addPatient(patientname: String!, email: String!, password: String!): Auth
+    addPatient(credentials:UserCredentials!): Auth
     login(email: String!, password: String!): Auth
-    addMedicalHistory(medicalHistoryText: String!, medicalHistoryAuthor: String!): MedicalHistory
-    addUserHistory(userHistory: UserHistoryInput!): UserHistory  
+    addMedicalHistory(medicalHistory: MedicalHistoryInput!): MedicalHistory
     addComment(
       medicalHistoryId: ID!
       commentText: String!
-      commentAuthor: String!
+      commentAuthor: ID
     ): MedicalHistory
     removeMedicalHistory(medicalHistoryId: ID!): MedicalHistory
     removeComment(medicalHistoryId: ID!, commentId: ID!): MedicalHistory

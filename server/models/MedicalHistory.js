@@ -9,12 +9,54 @@ const medicalHistorySchema = new Schema({
     maxlength: 280,
     trim: true,
   },
-  medicalHistoryAuthor: {
+  gender: {
     type: String,
-    required: true,
     trim: true,
   },
-  
+  age: {
+    type: String,
+    trim: true,
+  },
+  dob: {
+    type: String,
+    trim: true,
+  },
+  symptomOne: {
+    type: Boolean,
+  },
+  symptomTwo: {
+    type: Boolean,
+  },
+  symptomThree: {
+    type: Boolean,
+  },
+  symptomFour: {
+    type: Boolean,
+  },
+  symptomFive: {
+    type: Boolean,
+  },
+  symptomSix: {
+    type: Boolean,
+  },
+  symptomSeven: {
+    type: Boolean,
+  },
+  symptomEight: {
+    type: Boolean,
+  },
+  symptomNine: {
+    type: Boolean,
+  },
+  symptomTen: {
+    type: Boolean,
+  },
+  symptomEleven: {
+    type: Boolean,
+  },
+  symptomTwelve: {
+    type: Boolean,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -30,7 +72,8 @@ const medicalHistorySchema = new Schema({
         maxlength: 280,
       },
       commentAuthor: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref:"User",
         required: true,
       },
       createdAt: {
