@@ -11,8 +11,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import AboutUs from './pages/AboutUs'
 import SingleMedicalHistory from './pages/SingleMedicalHistory';
 import Appointment from './pages/Appointment';
+import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -67,6 +69,14 @@ function App() {
               <Route
                 path="/appointment"
                 element={<Appointment />}
+              />
+              <Route
+                path="/profile"
+                element={<Profile />}
+              />
+               <Route
+                path="/about"
+                element={<AboutUs />}
               />
             </Routes>
           </div>

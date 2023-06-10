@@ -1,53 +1,168 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars,
+  faHome,
+  faRightToBracket,
+  faUserPlus,
+  faCalendarCheck,
+  faRightFromBracket,
+  faAddressCard,
+  faIdBadge
+} from '@fortawesome/free-solid-svg-icons'
 
 import Auth from '../../utils/auth';
 
-const Header = () => {
+export default function Navbar({ fixed }) {
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
+
   return (
-    <header className="fixed top-0 z-30 w-full p-1 bg-slate-800 shadow-xl flex items-center  space-x-3 md:inline-flex ">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
 
-          {/* Need to figure out how to link this to the home page? */}
-          
-          <Link className="text-light" to="home">
-            <h1 className="m-0">Shifa</h1>
-          </Link>
+    <>
+      <nav className="fixed top-0 z-30 w-full flex flex-wrap items-center justify-between bg-cyan-500 py-6">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <a
+              className="text-lg font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase text-white"
+              href="/"
+            >
+              Shifa
+            </a>
+            <button
+              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              <FontAwesomeIcon
+                icon={faBars}
+                color="white"
+              />
+            </button>
+          </div>
+
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <div
+              className={
+                "lg:flex flex-grow items-center" +
+                (navbarOpen ? " flex" : " hidden")
+              }
+            >
+
+              <section className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                {Auth.loggedIn() ? (
+                  <>
+                    <span  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white">Welcome {Auth.getProfile().data.firstName}!</span>
+
+                    <div
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      <FontAwesomeIcon
+                        icon={faHome}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2 " onClick={() => window.location.href = "/"}>Home</span>
+                    </div>
+
+                    <div
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      <FontAwesomeIcon
+                        icon={faIdBadge}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2" onClick={() => window.location.href = "/profile"}>{Auth.getProfile().data.firstName}'s Profile</span>
+                    </div>
+
+                    <div
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      <FontAwesomeIcon
+                        icon={faCalendarCheck}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2" onClick={() => window.location.href = "/appointment"}>Appointment</span>
+                    </div>
+
+                    <div
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      <FontAwesomeIcon
+                        icon={faRightFromBracket}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2" onClick={logout}>Logout</span>
+                    </div>
+
+
+                  </>
+                ) : (
+                  <>
+                    <a
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      href="/"
+                    >
+                      <FontAwesomeIcon
+                        icon={faHome}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2">Home</span>
+                    </a>
+
+                    <a
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      href="/about"
+                    >
+                      <FontAwesomeIcon
+                        icon={faAddressCard}
+                        color="white"
+                        className=" text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2">About Us</span>
+                    </a>
+
+                    <a
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      href="/Login"
+                    >
+                      <FontAwesomeIcon
+                        icon={faRightToBracket}
+                        color="white"
+                        className="text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2">Login</span>
+                    </a>
+
+                    <a
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      href="/Signup"
+                    >
+                      <FontAwesomeIcon
+                        icon={faUserPlus}
+                        color="white"
+                        className="text-lg leading-lg text-white opacity-75"
+                      />
+                      <span className="ml-2">Register</span>
+                    </a>
+
+                  </>
+                )}
+              </section>
+            </div>
+          </div>
         </div>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <span>Welcome {Auth.getProfile().data.patientname}!</span>
-              {/* Need to update the onClick Action to take to the Appointment Page */}
-
-              <button className="btn btn-lg btn-light m-2" onClick={() => window.location.href = "/appointment"}>
-                Appointment
-              </button>
-              
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
+      </nav>
+    </>
   );
-};
+}
 
-export default Header;
