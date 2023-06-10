@@ -2,17 +2,20 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
-  type User {
+  # type User {
+  #   firstName: String
+  #   lastName: String
+  #   email: String
+  #   fullName: String
+  # }
+
+  type Patient {
+    _id: ID
     firstName: String
     lastName: String
     email: String
-    fullName: String
-  }
-
-  type Patient {
-    user: User
+    # fullName: String
     medicalHistorys: [MedicalHistory]
-    # userHistorys: [UserHistory]
   }
 
 type MedicalHistory {
@@ -20,7 +23,6 @@ type MedicalHistory {
   gender: String
   age: String
   dob: String
-  medicalHistoryText: String
   symptomOne: Boolean
   symptomTwo: Boolean
   symptomThree: Boolean
@@ -33,11 +35,12 @@ type MedicalHistory {
   symptomTen: Boolean
   symptomEleven: Boolean
   symptomTwelve: Boolean
+  medicalHistoryText: String
   createdAt: String
-  comments: [Comment]
+  # comments: [Comment]
 }
 
-input UserCredentials{
+input PatientCredentials{
     firstName: String
     lastName: String
     email: String
@@ -45,7 +48,6 @@ input UserCredentials{
 }
 
 input MedicalHistoryInput {
- patientID: ID
   gender: String
   age: String
   dob: String
@@ -65,16 +67,16 @@ input MedicalHistoryInput {
 }
 
 
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: User
-    createdAt: String
-  }
+  # type Comment {
+  #   _id: ID
+  #   commentText: String
+  #   commentAuthor: User
+  #   createdAt: String
+  # }
 
   type Auth {
     token: ID!
-    user: User!
+    patient: Patient!
   }
 
   type Query {
@@ -85,16 +87,16 @@ input MedicalHistoryInput {
   }
 
   type Mutation {
-    addPatient(credentials:UserCredentials!): Auth
+    addPatient(credentials:PatientCredentials!): Auth
     login(email: String!, password: String!): Auth
     addMedicalHistory(medicalHistory: MedicalHistoryInput!): MedicalHistory
-    addComment(
-      medicalHistoryId: ID!
-      commentText: String!
-      commentAuthor: ID
-    ): MedicalHistory
-    removeMedicalHistory(medicalHistoryId: ID!): MedicalHistory
-    removeComment(medicalHistoryId: ID!, commentId: ID!): MedicalHistory
+    # addComment(
+    #   medicalHistoryId: ID!
+    #   commentText: String!
+    #   commentAuthor: ID
+    # ): MedicalHistory
+    # removeMedicalHistory(medicalHistoryId: ID!): MedicalHistory
+    # removeComment(medicalHistoryId: ID!, commentId: ID!): MedicalHistory
   }
 `;
 

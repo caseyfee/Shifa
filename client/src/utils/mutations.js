@@ -6,19 +6,22 @@ export const LOGIN_USER = gql`
       token
       patient {
         _id
-        patientname
+        # patientname
+        firstName
+        lastName
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addPatient($patientname: String!, $email: String!, $password: String!) {
-    addPatient(patientname: $patientname, email: $email, password: $password) {
-      token
+ mutation AddPatient($credentials: PatientCredentials!) {
+  addPatient(credentials: $credentials) {
+    token
       patient {
         _id
-        patientname
+        firstName
+        lastName
       }
     }
   }
@@ -40,6 +43,7 @@ export const ADD_MEDICALHIST = gql`
     }
   }
 `;
+
 
 export const ADD_USERHIST = gql`
 
@@ -70,7 +74,6 @@ export const ADD_USERHIST = gql`
     }
   }
 `;
-
 
 
 
