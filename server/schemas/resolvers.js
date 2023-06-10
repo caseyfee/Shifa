@@ -50,19 +50,22 @@ const resolvers = {
       return { token, patient };
     },
 
-    addMedicalHistory: async (_, { medicalHistory }) => {
-      const patientMedicalHistory = await MedicalHistory.create({ medicalHistory });
-
+      addMedicalHistory: async (_, { medicalHistory, patientId }) => {
+      const patientMedicalHistory = await MedicalHistory.create({
+        ...medicalHistory,
+        patientId: patientId,
+      });
+    
       await Patient.findOneAndUpdate(
-        { patientId: _id},
-        // {patientId},
-      
+        { _id: patientId },
         { $addToSet: { medicalHistorys: patientMedicalHistory._id } }
       );
-      console.log(patientId);
+    
       console.log("----- \n", patientMedicalHistory);
       return patientMedicalHistory;
     },
+    
+
 
     // addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
     //   return MedicalHistory.findOneAndUpdate(
