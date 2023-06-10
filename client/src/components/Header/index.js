@@ -1,4 +1,5 @@
 import React from 'react';
+import Shifa from '../assets/images/Shifa.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -14,6 +15,12 @@ import {
 import Auth from '../../utils/auth';
 
 export default function Navbar({ fixed }) {
+
+  const logoStyle = {
+    height: '80%',
+    width: '80%',
+    margin: '0',
+  };
 
   const logout = (event) => {
     event.preventDefault();
@@ -32,7 +39,8 @@ export default function Navbar({ fixed }) {
               className="text-lg font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase text-white"
               href="/"
             >
-              Shifa
+              <img src={Shifa} style={logoStyle} alt="Shifa Logo" />
+
             </a>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
