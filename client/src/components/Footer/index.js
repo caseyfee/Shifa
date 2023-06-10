@@ -1,49 +1,115 @@
-import React from 'react';
+// import React from 'react';
 // import { useLocation, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faGithub,
-  faFacebook,
-} from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import {
+//   faGithub,
+//   faFacebook,
+// } from '@fortawesome/free-brands-svg-icons';
 
-function Footer() {
+// function Footer() {
+
+//   return (
+//     <footer className="fixed bottom-0 z-30 w-full columns-1  flex items-center justify-center space-x-11 bg-slate-800 text-white">
+
+//       <section className="flex text-center py-1 gap-10 contact">
+
+//         <a
+//           href="https://github.com/anryl050"
+//           target="_blank"
+//           rel="noreferrer"
+//           className="py-1 self-center"
+//         >
+//           <FontAwesomeIcon
+//             icon={faGithub}
+//             color="white"
+//             className="anchor-icon"
+//           />
+//         </a>
+
+//         <a
+//           href="https://www.facebook.com"
+//           rel="noreferrer"
+//           target="_blank"
+//           className="py-1 self-center"
+//         >
+//           <FontAwesomeIcon
+//             icon={faFacebook}
+//             color="white"
+//             className="anchor-icon"
+//           />
+//         </a>
+//       </section>
+
+
+//     </footer>
+//   );
+// }
+
+// export default Footer;
+
+
+
+
+
+
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebook
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faHandHoldingMedical,
+  faSquarePhone,
+  faEnvelope
+} from '@fortawesome/free-solid-svg-icons'
+
+
+export default function Footer({ fixed }) {
 
   return (
-    <footer className="fixed bottom-0 z-30 w-full columns-1  flex items-center justify-center space-x-11 bg-slate-800 text-white">
+    <>
+      <footer className="fixed bottom-0 z-30 w-full columns-1 flex items-center justify-center space-x-11 bg-cyan-500 text-white pt-2">
 
-      <section className="flex text-center py-1 gap-10 contact">
+        <section className="flex text-center gap-10 contact justify-center"> {/* Added "items-center" and "justify-center" */}
 
-        <a
-          href="https://github.com/anryl050"
-          target="_blank"
-          rel="noreferrer"
-          className="py-1 self-center"
-        >
           <FontAwesomeIcon
-            icon={faGithub}
+            icon={faSquarePhone}
             color="white"
-            className="anchor-icon"
           />
-        </a>
 
-        <a
-          href="https://www.facebook.com"
-          rel="noreferrer"
-          target="_blank"
-          className="py-1 self-center"
-        >
           <FontAwesomeIcon
-            icon={faFacebook}
+            icon={faEnvelope}
             color="white"
-            className="anchor-icon"
           />
-        </a>
-      </section>
+
+          <a
+            href="https://www.facebook.com"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <FontAwesomeIcon
+              icon={faFacebook}
+              color="white"
+            />
+          </a>
 
 
-    </footer>
+
+          <div className="flex  gap-3 ">
+            <p className="flex text-sm">© </p>
+            <FontAwesomeIcon
+              icon={faHandHoldingMedical}
+              color="white"
+            />
+            <p className="flex text-sm">Shifa, Medical Group</p>
+          </div>
+
+        </section>
+
+      </footer>
+    </>
   );
-}
 
-export default Footer;
+
+}
 
