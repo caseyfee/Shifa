@@ -4,39 +4,57 @@
 
 At our non-profit doctor's office, our mission is to provide compassionate, accessible, and high-quality healthcare services to individuals in need, regardless of their socioeconomic status. We are dedicated to improving the health and well-being of our community by delivering comprehensive medical care and promoting preventive measures.
 
+## Table of Contents
+- [Description](#description) 
+- [HowtoUse] (#HowtoUse)
+- [Troubleshooting] (#troubleshooting)
+- [NextSteps] (#nextSteps)
+- [Technology] (#technology)
+- [originalIdea] (#idea)
+- [Credits](#credits) 
+- [Criteria](#criteria)
 
 # How to Use Shifa
 
 Here are  step-by-step instructions for using the Shifa website features.
 
 ## How to Sign into Shifa
-1. Enter a radius in the text box (e.g., 10, 25, etc.) and click the 'Search' button. A list of events will populate below the search bar. Your browser may prompt you to allow location-sharing. Allow the browser to do so.
+New User:
+1. If it the user's first time, they must sign up using the sign up link. Upon creating a patient profile, the user is sent to a simple form where basic medical information is collected. 
 
 ![Shifa](https://user-images.githubusercontent.com/118693401/219531900-0edbefac-198c-4f20-ad11-914ebb167796.png)
 
 
 
-2. Click on the Get Directions button to the right to view driving directions to the selected event. The button will change color if you hover on it with your cursor.
+2. Once the medical information is collected, the user is sent to an appointment link where they can choose a 30 or 60 minute initial appointment.
 
 ![Shifa (1)](https://user-images.githubusercontent.com/118693401/219531992-9178ccc5-e629-45a5-adb1-56cf3fb5c7d1.png)
 
+3. Once an indivudal chooses a time that works for them, they are sent a confirmation email with reminder potentials.
 
+4. At this point, a user profile will have been created where the user can see what they responded in the form. As many users create profiles and fill out the basic medical history forms, a database is created of folks who could use medical assistance and their ailments that doctors and medical professionals can connect to. 
 
-3. The map of your geolocation and driving directions for your selected event will appear on the screen.
+Existing User:
+1. Once an existing user logs in, they are directed to their profile page that lists the user's most recent answers to the medical forms. 
 
 ![Shifa (2)](https://user-images.githubusercontent.com/118693401/219532114-9a9daa84-ef07-43d9-bc6a-28d49dd751c4.png)
 
-
-
-4. To start a new search, enter a new radius in the search bar. You can also click on Get Directions for a different event to view it.
+2. An existing user can create as many appointment requests as they want so doctors can connect with them. 
 
 # Troubleshooting
 
 Contact our team at our GitHub profiles for technical assistance.
 
-# Technology Used
+# Next Steps:
+* Ensure application is as accessible as possible
+* Create a doctor portal that would pull all potential patient's information so doctors can review and choose to connect with patients one on one.
+  To do this, we would restructure our models (which we started) to have an umbrella "users" where "medicalProfessionals" and "Patients" live under
+* 
 
-<div align="center">
+
+# Technology
+
+<div align="center" >
   
   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
@@ -45,27 +63,31 @@ Contact our team at our GitHub profiles for technical assistance.
   <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" alt="Git" width="40" height="40"/>
+   <img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="Mongoose" alt="Mongoose" width="40" height="40"/>
+ <img src="https://github.com/devicons/devicon/blob/master/icons/graphql/graphql-plain-wordmark.svg
+" title="graphql" alt="graphqlIcon" width="40" height="40"/>
+<img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original-wordmark.svg" title="tailwinds" alt="tailwinds" width="40" height="40"/>
 </div>
 
 
-NEED TO ADD MONGOOSE, COMPASS? GRAPHQL?
+# Idea
+
+[INSERT ORIGINAL PICTURE OF EXICEDRAW]
 
 
 # Acceptance Criteria
 
-* View the [Google Slides Presentation](https://docs.google.com/presentation/d/1ql_dwRZoohJV3LKtCjuISpeVdkXhfl-6_2kuPeaoEF8/edit#slide=id.g29f43f0a72_0_10). ✨
+* View the [Google Slides Presentation](https://docs.google.com/presentation/d/1u94XLICLDT1kzTt9NLh_2h8scX0Sg6DoeKqV32ayy-w/edit#slide=id.g23e94caac50_0_0). ✨
 
-* Must use at least two server-side APIs
-* Must use a CSS framework other than Bootstrap
-* Must use client-side storage to store persistent data
+* Use React, GraphQL, and MongoDB
+* Use queries and mutations for retrieving, adding, updating, and deleting data. 
+* Be deployed using Heroku (with data).
 * Must have a polished UI
-* Must meet good quality coding standards (indentation, scoping, naming, etc.)
-* Must NOT use alerts, confirms, or prompts (look into modals).
-* Must be deployed to GitHub Pages
-* Must be interactive (i.e. accept and respond to user input.)
+* Use JWT authentication
+* Protect sensitive API key information on the server
+* Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, and so on).
+* Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-## When/Then statements
-* When a user enters their radius in the search bar, the application will populate nearby events in relation to their geolocation.
 
 
 # Credits 
@@ -76,5 +98,7 @@ NEED TO ADD MONGOOSE, COMPASS? GRAPHQL?
 |Anastasiya Rylova|[anryl050](https://github.com/anryl050)
 |Casey Fee|[caseyfee](https://github.com/caseyfee)
 |Linh Tran|[LinhTran](https://github.com/linhntran) |
+
+Also a special shoutout to tutor - Dominique Meeks Gombe who taught us SO MUCH with the greatest patience all year!! We will miss working with her. 
 
 
