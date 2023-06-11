@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from '../../images/shifa.jpg'
+import Image from '../../images/white-slogan2.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -17,8 +17,8 @@ import Auth from '../../utils/auth';
 export default function Navbar({ fixed }) {
 
   const logoStyle = {
-    height: '100px',
-    width: '200px',
+    height: '130px',
+    width: '300x',
   };
 
   const logout = (event) => {
@@ -31,14 +31,14 @@ export default function Navbar({ fixed }) {
   return (
 
     <>
- <nav className="fixed top-0 z-30 w-full flex items-center justify-between bg-cyan-500 py-6 shadow-xl">
+ <nav className="fixed top-0 z-30 w-full flex items-center justify-between bg-cyan-500 py-2 shadow-xl">
       <div className="container flex flex-wrap items-center justify-between"> 
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a href="/" className="flex items-center"> 
             <img src={Image} className="" style={logoStyle} alt="Shifa Logo" />
           </a>
           <button
-            className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            className=" cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
@@ -59,10 +59,10 @@ export default function Navbar({ fixed }) {
             <section className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 {Auth.loggedIn() ? (
                   <>
-                    <span  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white">Welcome {Auth.getProfile().data.firstName}!</span>
+                    <span  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white">Welcome {Auth.getProfile().data.firstName}!</span>
 
                     <div
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="cursor-pointer px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                     >
                       <FontAwesomeIcon
                         icon={faHome}
@@ -73,7 +73,7 @@ export default function Navbar({ fixed }) {
                     </div>
 
                     <div
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="cursor-pointer px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                     >
                       <FontAwesomeIcon
                         icon={faIdBadge}
@@ -84,7 +84,7 @@ export default function Navbar({ fixed }) {
                     </div>
 
                     <div
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="cursor-pointer px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                     >
                       <FontAwesomeIcon
                         icon={faCalendarCheck}
@@ -95,7 +95,7 @@ export default function Navbar({ fixed }) {
                     </div>
 
                     <div
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="cursor-pointer px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                     >
                       <FontAwesomeIcon
                         icon={faRightFromBracket}
@@ -110,7 +110,7 @@ export default function Navbar({ fixed }) {
                 ) : (
                   <>
                     <a
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                       href="/"
                     >
                       <FontAwesomeIcon
@@ -122,7 +122,7 @@ export default function Navbar({ fixed }) {
                     </a>
 
                     <a
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                       href="/about"
                     >
                       <FontAwesomeIcon
@@ -134,7 +134,7 @@ export default function Navbar({ fixed }) {
                     </a>
 
                     <a
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                       href="/Login"
                     >
                       <FontAwesomeIcon
@@ -146,7 +146,7 @@ export default function Navbar({ fixed }) {
                     </a>
 
                     <a
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                       href="/Signup"
                     >
                       <FontAwesomeIcon

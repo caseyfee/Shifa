@@ -22,7 +22,7 @@ const Home = () => {
     margin: '0',
   };
 
-  return (
+   return (
 
 
     
@@ -51,10 +51,10 @@ const Home = () => {
       backgroundAttachment: 'fixed',  
       backgroundPosition: 'center',   
     }}>
-      
+    <div className='main'>
         <div className='h-full pt-24 pb-10'>
           <div className="flex-row justify-center">
-            <div className="col-12 col-md-10 mb-3 p-3 flex-row justify-center">
+            <div className=" col-12 col-md-10 mb-3 p-3 flex-row justify-center" >
 
               <Lottie
                 animationData={Heart}
@@ -66,7 +66,9 @@ const Home = () => {
           </div>
         </div>
         </div>
-     
+        </div>
+  
+
       )
   );
 };
