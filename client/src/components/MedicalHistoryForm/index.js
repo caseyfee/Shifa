@@ -13,32 +13,32 @@ import symptomChecks from './symptoms';
 
 // const MedicalHistoryForm = () => {
 
-  // const [medicalHistoryText, setMedicalHistoryText] = useState('');
+// const [medicalHistoryText, setMedicalHistoryText] = useState('');
 
-  // const [userHistory, setUserHistory] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   gender: "",
-  //   age: "",
-  //   dob: "",
-  //   symptomOne: false,
-  //   symptomTwo: false,
-  //   symptomThree: false,
-  //   symptomFour: false,
-  //   symptomFive: false,
-  //   symptomSix: false,
-  //   symptomSeven: false,
-  //   symptomEight: false,
-  //   symptomNine: false,
-  //   symptomTen: false,
-  //   symptomEleven: false,
-  //   symptomTwelve: false
-  // });
+// const [userHistory, setUserHistory] = useState({
+//   firstName: "",
+//   lastName: "",
+//   gender: "",
+//   age: "",
+//   dob: "",
+//   symptomOne: false,
+//   symptomTwo: false,
+//   symptomThree: false,
+//   symptomFour: false,
+//   symptomFive: false,
+//   symptomSix: false,
+//   symptomSeven: false,
+//   symptomEight: false,
+//   symptomNine: false,
+//   symptomTen: false,
+//   symptomEleven: false,
+//   symptomTwelve: false
+// });
 
-  // setUserHistory ({
-  //   ...userHistory,
-  //   [label]: value,
-  // })
+// setUserHistory ({
+//   ...userHistory,
+//   [label]: value,
+// })
 
 
 //   const [addMedicalHistory, { error }] = useMutation(ADD_MEDICALHIST, {
@@ -116,7 +116,7 @@ import symptomChecks from './symptoms';
 //   };
 
 const MedicalHistoryForm = () => {
-  
+
   const [medicalHistory, setMedicalHistory] = useState({
 
     medicalHistoryText: '',
@@ -159,7 +159,7 @@ const MedicalHistoryForm = () => {
   });
 
 
-  const [addUserHistory, {}] = useMutation(ADD_USERHIST, {
+  const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
     update(cache, { data: { addUserHistory } }) {
       try {
         const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
@@ -255,51 +255,61 @@ const MedicalHistoryForm = () => {
     <div>
       <h3>New Patient Medical History Form</h3>
 
-      {Auth.loggedIn() ? (
+      
         <>
 
           <form
-            className="flex-col-1 align-center"
+            className="flex-col-2 align-center "
             onSubmit={handleFormSubmit}
           >
-            <p>Patient Information</p>
+            <p className="mt-8">Patient Information</p>
 
-            {formFields.map(({ label, key }) => {
-              return <div key={key} className="mb-6">
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
-                <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={medicalHistory.userHistory.key}
-                  placeholder="Enter your information"
-                  onChange={handleChange}>
-                </input>
-              </div>
-            })}
+            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+              {formFields.map(({ label, key }) => {
+                return <div key={key} >
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={medicalHistory.userHistory.key}
+                    placeholder="Enter your information"
+                    onChange={handleChange}
+                    required
+                  />
+                  {medicalHistory.userHistory.key === '' && (
+                    <p className="text-red-500 text-xs mt-1">This field is required</p>
+                  )}
+                </div>
+              })}
+            </div>
 
-            <p>Symptoms</p>
+            <p className="mt-8">Symptoms</p>
 
-            {symptomChecks.map(({ label, key }) => {
-              return <div key={key} className="flex items-center ">
-                <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  type="checkbox"
-                  id={key}
-                  name={key}
-                  checked={medicalHistory.userHistory.key}
-                  onChange={handleChange} />
-                <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
-              </div>
-            })}
+            <div className="grid grid-cols-1 gap-2 mt-4 md:grid-cols-3">
+              {symptomChecks.map(({ label, key }) => {
+                return <div key={key} >
+                  <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-cyan-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    type="checkbox"
+                    id={key}
+                    name={key}
+                    checked={medicalHistory.userHistory.key}
+                    onChange={handleChange}
+                    />
+                  <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
+                </div>
+              })}
+            </div>
 
-            <p>Other:</p>
+            <p className="mt-8">Other:</p>
 
             <div className="mt-6 mb-6">
               <textarea
                 name="medicalHistoryText"
-                placeholder="Here's a new medicalHistory..."
+                placeholder="Add additional infromation related to your health here"
                 value={medicalHistory.medicalHistoryText}
-                className="form-input w-100"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
@@ -317,12 +327,7 @@ const MedicalHistoryForm = () => {
             )}
           </form>
         </>
-      ) : (
-        <p>
-          You need to be logged in to share your medicalHistorys. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )}
+
     </div>
   );
 };

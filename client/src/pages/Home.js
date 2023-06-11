@@ -22,46 +22,56 @@ const Home = () => {
     margin: '0',
   };
 
-  return (
+   return (
+
+
     
       Auth.loggedIn() ? (
-        <>
+      <>
+          <div className='h-full pt-40 pb-10'>
+          <div className="flex-row justify-center">
+
+            <div
+              className="col-12 col-md-10 mb-3 p-3"
+              style={{ border: '1px dotted #1a1a1a' }}
+            >
+              <MedicalHistoryForm />
+            </div>
+
+          </div>
+        </div>
+      </>
+      ) : (
+     
+          <div style={{
+      height: "screen",
+      width:"screen",
+      backgroundSize: 'cover',
+      backgroundImage: `url(${require('../images/seattle.jpg')})`,
+      backgroundAttachment: 'fixed',  
+      backgroundPosition: 'center',   
+    }}>
+    <div className='main'>
         <div className='h-full pt-24 pb-10'>
           <div className="flex-row justify-center">
+            <div className=" col-12 col-md-10 mb-3 p-3 flex-row justify-center" >
 
-              <div
-                className="col-12 col-md-10 mb-3 p-3 h-full pt-24 pb-10"
-                style={{ border: '1px dotted #1a1a1a' }}
-              >
-                <MedicalHistoryForm />
-              </div>
+              <Lottie
+                animationData={Heart}
+                style={lottieStyles}
+              />
 
-              </div>
-              </div>
-            </>
-            ) : (
-            <>
-            <div className='h-full pt-24 pb-10'>
-          <div className="flex-row justify-center">
-              <div className="col-12 col-md-10 mb-3 p-3 flex-row justify-center">
-                {/* <img
-            src={Image}
-            alt="global health care"
-          /> */}
+              <h1>Shifa - Where Your Health Matters</h1>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+  
 
-                <Lottie
-                  animationData={Heart}
-                  style={lottieStyles}
-                />
+      )
+  );
+};
 
-                <h1>Shifa - Where Your Health Matters</h1>
-              </div>
-              </div>
-              </div>
-            </>
-        )
 
-      );
-    };
-
-  export default Home;
+export default Home;

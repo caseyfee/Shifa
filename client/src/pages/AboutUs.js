@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import Image from "../images/global-healthcare.avif";
+// import Image from "../images/global-healthcare.avif";
 
 // import MedicalHistoryList from '../components/MedicalHistoryList';
 import MedicalHistoryForm from '../components/MedicalHistoryForm';
@@ -43,10 +43,10 @@ const Home = () => {
           ) : (
             <>
                <div className="col-12 col-md-10 mb-3 p-3">
-          <img
+          {/* <img
             src={Image}
             alt="global health care"
-          />
+          /> */}
 
           <p>
             At our non-profit doctor's office, our mission is to provide compassionate, accessible, and high-quality healthcare services to individuals in need, regardless of their socioeconomic status. We are dedicated to improving the health and well-being of our community by delivering comprehensive medical care and promoting preventive measures.
