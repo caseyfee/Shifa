@@ -1,5 +1,5 @@
 import React from 'react';
-import Shifa from '../assets/images/Shifa.jpg'
+import Image from '../../images/shifa.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -17,9 +17,8 @@ import Auth from '../../utils/auth';
 export default function Navbar({ fixed }) {
 
   const logoStyle = {
-    height: '80%',
-    width: '80%',
-    margin: '0',
+    height: '100px',
+    width: '200px',
   };
 
   const logout = (event) => {
@@ -32,37 +31,32 @@ export default function Navbar({ fixed }) {
   return (
 
     <>
-      <nav className="fixed top-0 z-30 w-full flex flex-wrap items-center justify-between bg-cyan-500 py-6">
-        <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
-              className="text-lg font-bold leading-relaxed inline-block mr-4  whitespace-nowrap uppercase text-white"
-              href="/"
-            >
-              <img src={Shifa} style={logoStyle} alt="Shifa Logo" />
+ <nav className="fixed top-0 z-30 w-full flex items-center justify-between bg-cyan-500 py-6 shadow-xl">
+      <div className="container flex flex-wrap items-center justify-between"> 
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <a href="/" className="flex items-center"> 
+            <img src={Image} className="" style={logoStyle} alt="Shifa Logo" />
+          </a>
+          <button
+            className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            type="button"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <FontAwesomeIcon
+              icon={faBars}
+              color="white"
+            />
+          </button>
+        </div>
 
-            </a>
-            <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <FontAwesomeIcon
-                icon={faBars}
-                color="white"
-              />
-            </button>
-          </div>
-
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <div
-              className={
-                "lg:flex flex-grow items-center" +
-                (navbarOpen ? " flex" : " hidden")
-              }
-            >
-
-              <section className="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <div
+            className={
+              "lg:flex flex-grow items-center" +
+              (navbarOpen ? " flex" : " hidden")
+            }
+          >
+            <section className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 {Auth.loggedIn() ? (
                   <>
                     <span  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white">Welcome {Auth.getProfile().data.firstName}!</span>

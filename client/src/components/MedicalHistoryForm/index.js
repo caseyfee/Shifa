@@ -259,7 +259,7 @@ const MedicalHistoryForm = () => {
         <>
 
           <form
-            className="flex-col-1 align-center"
+            className="flex-col-1 align-center "
             onSubmit={handleFormSubmit}
           >
             <p>Patient Information</p>
