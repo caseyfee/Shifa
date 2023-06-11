@@ -24,23 +24,6 @@ const Home = () => {
 
   return (
     
-      Auth.loggedIn() ? (
-        <>
-        <div className='h-full pt-24 pb-10'>
-          <div className="flex-row justify-center">
-
-              <div
-                className="col-12 col-md-10 mb-3 p-3 h-full pt-24 pb-10"
-                style={{ border: '1px dotted #1a1a1a' }}
-              >
-                <MedicalHistoryForm />
-              </div>
-
-              </div>
-              </div>
-            </>
-            ) : (
-            <>
             <div className='h-full pt-24 pb-10'>
           <div className="flex-row justify-center">
               <div className="col-12 col-md-10 mb-3 p-3 flex-row justify-center">
@@ -58,8 +41,8 @@ const Home = () => {
               </div>
               </div>
               </div>
-            </>
-        )
+          
+        
 
       );
     };

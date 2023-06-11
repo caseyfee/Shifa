@@ -78,7 +78,7 @@ const Signup = () => {
                             placeholder="First Name"
                             name="firstName"
                             type="text"
-                            value={formState.firstName}
+                            value={formState.name}
                             onChange={handleChange}
                           />
                         </div>
@@ -91,7 +91,7 @@ const Signup = () => {
                             placeholder="Last name"
                             name="lastName"
                             type="text"
-                            value={formState.lastName}
+                            value={formState.name}
                             onChange={handleChange}
                           />
                         </div>
@@ -123,7 +123,7 @@ const Signup = () => {
                         </div>
 
                         <div className="flex justify-between items-center">
-                          <span>Patient Registration</span>
+                          {/* <span>Patient Registration</span> */}
                           <label className="switch">
                             <input
                               type="checkbox"
