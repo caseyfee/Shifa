@@ -96,7 +96,6 @@ const Signup = () => {
                           />
                         </div>
 
-
                         <div>
                           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                             Email Address
@@ -137,11 +136,12 @@ const Signup = () => {
                         </div>
 
                         {isClientRegistration ? (
-                          <button type="submit">
+                          <button type="submit" className="btn btn-block btn-primary"
+                          >
                             <span>Doctor Sign Up</span>
                           </button>
                         ) : (
-                          <button type="submit">
+                          <button type="submit" className="btn btn-block btn-primary">
                             <span>Patient Sign Up</span>
                           </button>
                         )}
@@ -159,6 +159,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-
-
