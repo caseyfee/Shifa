@@ -87,7 +87,7 @@ input MedicalHistoryInput {
   }
 
   type Mutation {
-    addPatient(credentials:PatientCredentials!): Auth
+    addPatient(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMedicalHistory(medicalHistory: MedicalHistoryInput!): MedicalHistory
     # addComment(
