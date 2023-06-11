@@ -25,9 +25,8 @@ const resolvers = {
 
   Mutation: {
 
-    addPatient: async (_, { credentials }) => {
-      const patient = await Patient.create(credentials);
-      console.log(patient);
+    addPatient: async (parent, { firstName, lastName, email, password }) => {
+      const patient = await Patient.create({ firstName, lastName, email, password });
       const token = signToken(patient);
       return { token, patient };
     },

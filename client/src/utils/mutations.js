@@ -15,19 +15,18 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
- mutation AddPatient($credentials: PatientCredentials!) {
-  addPatient(credentials: $credentials) {
+ mutation AddPatient($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+  addPatient(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
     token
       patient {
         _id
+        email
         firstName
         lastName
       }
     }
   }
 `;
-
-
 
 export const ADD_MEDICALHIST = gql`
   mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
