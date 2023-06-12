@@ -14,18 +14,18 @@ const resolvers = {
     },
 
     // medicalHistorys: async (_, { patient }) => {
-    medicalHistorys: async () => {
-      // const params = patient ? { patient } : {};
+    medicalHistorys: async (_, patientId) => {
+      const params = patientId ? { patientId } : {};
       // return MedicalHistory.find(params).sort({ createdAt: -1 });
       // const params = patient ? { patient } : {};
-      return MedicalHistory.find().sort({ createdAt: -1 });
+      return MedicalHistory.findById(params).sort({ createdAt: -1 });
     },
 
     // medicalHistory: async (_, { medicalHistoryId }) => {
     //   return MedicalHistory.findOne({ _id: medicalHistoryId });
     // },
-    medicalHistory: async (_, { patientId }) => {
-      return MedicalHistory.findOne({ _id: patientId });
+    medicalHistory: async (_, { medicalHistoryId }) => {
+      return MedicalHistory.findOneById(medicalHistoryId);
     },
   },
 
@@ -55,21 +55,20 @@ const resolvers = {
       return { token, patient };
     },
 
-      addMedicalHistory: async (_, { medicalHistory, patientId }) => {
-      const patientMedicalHistory = await MedicalHistory.create({
-        ...medicalHistory,
-        patientId: patientId,
+    addMedicalHistory: async (_, {
+      medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve 
+    }) => {
+      const medicalHistory = await MedicalHistory.create({ 
+        medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve
       });
-    
-      await Patient.findOneAndUpdate(
-        { _id: patientId },
-        { $addToSet: { medicalHistorys: patientMedicalHistory._id } }
+      await Patient.findById(
+         {_id: id} ,
+        { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
-    
-      console.log("----- \n", patientMedicalHistory);
-      return patientMedicalHistory;
+      console.log("----- \n", medicalHistory);
+      return medicalHistory;
     },
-    
+
 
 
     // addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
