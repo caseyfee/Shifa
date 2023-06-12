@@ -80,7 +80,7 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
-                      <span className="ml-2" onClick={() => window.location.href = "/profile"}>{Auth.getProfile().data.firstName}'s Profile</span>
+                      <span className="ml-2" onClick={() => window.location.href = "/me"}>{Auth.getProfile().data.firstName}'s Profile</span>
                     </div>
 
                     <div

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// WE NEED IT:- (LOGIN PAGE)
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -28,6 +29,7 @@ export const ADD_USER = gql`
   }
 `;
 
+// WE NEED IT:- (MEDICALHISTORYFORM - INDEX.JS)
 export const ADD_MEDICALHIST = gql`
   mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
     addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
@@ -35,6 +37,25 @@ export const ADD_MEDICALHIST = gql`
       medicalHistoryText
       medicalHistoryAuthor
       createdAt
+
+      firstName
+      lastName
+      gender
+      age
+      dob
+      symptomOne
+      symptomTwo
+      symptomThree
+      symptomFour
+      symptomFive
+      symptomSix
+      symptomSeven
+      symptomEight
+      symptomNine
+      symptomTen
+      symptomEleven
+      symptomTwelve
+
       comments {
         _id
         commentText

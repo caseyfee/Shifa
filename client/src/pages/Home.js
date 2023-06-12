@@ -54,7 +54,8 @@ const Home = () => {
     <div className='main'>
         <div className='h-full pt-24 pb-10'>
           <div className="flex-row justify-center">
-            <div className=" col-12 col-md-10 mb-3 p-3 flex-row justify-center" >
+            <div className=" col-12 col-md-10 mb-3 p-3 flex-row justify-center"
+            style={{ border: '1px dotted #1a1a1a', backgroundColor: "#ffffff", opacity:"0.6" }}>
 
               <Lottie
                 animationData={Heart}
