@@ -13,13 +13,19 @@ const resolvers = {
       return Patient.findById(patientId).populate('medicalHistorys');
     },
 
-    medicalHistorys: async (_, { patient }) => {
-      const params = patient ? { patient } : {};
-      return MedicalHistory.find(params).sort({ createdAt: -1 });
+    // medicalHistorys: async (_, { patient }) => {
+    medicalHistorys: async () => {
+      // const params = patient ? { patient } : {};
+      // return MedicalHistory.find(params).sort({ createdAt: -1 });
+      // const params = patient ? { patient } : {};
+      return MedicalHistory.find().sort({ createdAt: -1 });
     },
 
-    medicalHistory: async (_, { medicalHistoryId }) => {
-      return MedicalHistory.findOne({ _id: medicalHistoryId });
+    // medicalHistory: async (_, { medicalHistoryId }) => {
+    //   return MedicalHistory.findOne({ _id: medicalHistoryId });
+    // },
+    medicalHistory: async (_, { patientId }) => {
+      return MedicalHistory.findOne({ _id: patientId });
     },
   },
 

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "devicon": "^2.15.1",
+     "mongodb": "^5.6.0",
     "react-calendly": "^4.1.1"
   }
 }

@@ -91,6 +91,7 @@ const medicalHistorySchema = new Schema({
   //     },
   //   },
   // ],
+
 });
 
 const MedicalHistory = model('MedicalHistory', medicalHistorySchema);

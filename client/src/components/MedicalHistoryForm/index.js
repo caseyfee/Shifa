@@ -7,6 +7,9 @@ import { QUERY_MEDICALHISTORIES } from '../../utils/queries';
 import { ADD_USERHIST } from '../../utils/mutations';
 import { QUERY_USERHISTORIES } from '../../utils/queries';
 
+
+import { QUERY_ME } from '../../utils/queries';
+
 import Auth from '../../utils/auth';
 import formFields from './formFields';
 import symptomChecks from './symptoms';
@@ -155,6 +158,16 @@ const MedicalHistoryForm = () => {
       } catch (e) {
         console.error(e);
       }
+
+      // to update me object's cache
+      const { me } = cache.readQuery({
+        query: QUERY_ME });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: { ...me,
+          medicalHistorys: [
+            ...me.medicalHistorys, addMedicalHistory]}},
+        });
     },
   });
 
