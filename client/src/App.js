@@ -55,6 +55,14 @@ function App() {
                 element={<Home />}
               />
               <Route
+                path="/home"
+                element={<Home />}
+              />
+              <Route
+                path="/Home"
+                element={<Home />}
+              />
+              <Route
                 path="/login"
                 element={<Login />}
               />
@@ -62,17 +70,25 @@ function App() {
                 path="/signup"
                 element={<Signup />}
               />
-              <Route
+              
+              {/* THESE SHOULD USE AFTER FOR DR. SIDE SO CAN OPEN PATIENT INFO. */}
+              {/* <Route
                 path="/medicalHistorys/:medicalHistoryId"
-                element={<SingleMedicalHistory />}
+                element={<Profile />}
+              /> */}
+              {/* <Route
+                path="/medicalHistorys/:patientId"
+                element={<Profile />}
+              /> */} 
+
+              <Route 
+                path="/me" 
+                element={<Profile />}
               />
+
               <Route
                 path="/appointment"
                 element={<Appointment />}
-              />
-              <Route
-                path="/profile"
-                element={<Profile />}
               />
                <Route
                 path="/about"

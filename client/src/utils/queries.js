@@ -70,8 +70,10 @@ query getUserHistorys {
 
 // seems like it should be different?
 export const QUERY_MEDICALHISTORIES = gql`
-  query medicalHistories($medicalHistoryId: ID!) {
-  medicalHistorys(medicalHistoryId: $medicalHistoryId) {
+  # query medicalHistories($medicalHistoryId: ID!) {
+  query medicalHistories {
+  # medicalHistorys(medicalHistoryId: $medicalHistoryId) {
+  medicalHistorys {
     _id
     medicalHistoryText
     medicalHistoryAuthor
@@ -103,3 +105,40 @@ export const QUERY_SINGLE_MEDICALHIST = gql`
 }
 `;
 
+
+
+// ADDED TODAY 11 JUN
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      firstName
+      lastName
+      email
+    medicalHistoryText
+    medicalHistoryAuthor
+    createdAt
+      MedicalHistory {
+      
+        _id
+      firstName
+      lastName
+      gender
+      age
+      dob
+      symptomOne
+      symptomTwo
+      symptomThree
+      symptomFour
+      symptomFive
+      symptomSix
+      symptomSeven
+      symptomEight
+      symptomNine
+      symptomTen
+      symptomEleven
+      symptomTwelve
+      }
+    }
+  }
+`;

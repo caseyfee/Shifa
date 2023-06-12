@@ -91,6 +91,14 @@ const medicalHistorySchema = new Schema({
   //     },
   //   },
   // ],
+
+  patient: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Patient',
+    },
+  ],
+
 });
 
 const MedicalHistory = model('MedicalHistory', medicalHistorySchema);

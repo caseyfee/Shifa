@@ -11,7 +11,7 @@ import Auth from '../utils/auth';
 
 import { QUERY_MEDICALHISTORIES } from '../utils/queries';
 
-const Home = () => {
+const Profile = () => {
 
   const { loading, data } = useQuery(QUERY_MEDICALHISTORIES);
   const medicalHistorys = data?.medicalHistorys || [];
@@ -37,7 +37,8 @@ const Home = () => {
                   style={lottieStyles}
                 />
 
-                <h1>Shifa - Where Your Health Matters</h1>
+                <h1>Shifa</h1>
+                <h2>Welcome to your profile page</h2>
               </div>
               </div>
               </div>
@@ -47,4 +48,4 @@ const Home = () => {
       );
     };
 
-  export default Home;
+  export default Profile;
