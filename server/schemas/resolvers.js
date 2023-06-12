@@ -62,7 +62,7 @@ const resolvers = {
         medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve
       });
       await Patient.findById(
-         {_id: id} ,
+         {patientId: _id} ,
         { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
       console.log("----- \n", medicalHistory);
