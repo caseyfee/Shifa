@@ -1,5 +1,18 @@
 import { gql } from '@apollo/client';
 
+// queries all users
+export const QUERY_USERS = gql`
+  query QueryPatients {
+    patients {
+      _id
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
+// queries single user?
 export const QUERY_USER = gql`
  query getUserInfo {
   patients {
@@ -43,6 +56,7 @@ export const QUERY_USER = gql`
 }
 `;
 
+// get all user medical histories
 export const QUERY_USERHISTORIES = gql`
 query getUserHistorys {
   userHistorys {
@@ -93,22 +107,30 @@ export const QUERY_MEDICALHISTORIES = gql`
 }
 `;
 
+// query single user medical history - works in Apollo
 export const QUERY_SINGLE_MEDICALHIST = gql`
- query singleMedicalHistory($medicalHistoryId: ID!) {
-  medicalHistory(medicalHistoryId: $medicalHistoryId) {
+ query singleMedicalHistory($patientId: ID!) {
+ medicalHistorys(patientId: $patientId) {
     _id
+    gender
+    age
+    dob
+    symptomOne
+    symptomTwo
+    symptomThree
+    symptomFour
+    symptomFive
+    symptomSix
+    symptomSeven
+    symptomEight
+    symptomNine
+    symptomTen
+    symptomEleven
+    symptomTwelve
     medicalHistoryText
-    medicalHistoryAuthor
     createdAt
-    comments {
-      _id
-      commentAuthor
-      commentText
-      createdAt
-    }
   }
-}
-`;
+}`;
 
 
 

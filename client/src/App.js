@@ -12,9 +12,11 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import AboutUs from './pages/AboutUs'
-import SingleMedicalHistory from './pages/SingleMedicalHistory';
+// import SingleMedicalHistory from '../components/SingleMedicalHistory';
 import Appointment from './pages/Appointment';
 import Profile from './pages/Profile';
+import Profile2 from './pages/Profile2';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
