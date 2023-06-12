@@ -15,6 +15,8 @@ import AboutUs from './pages/AboutUs'
 import SingleMedicalHistory from './pages/SingleMedicalHistory';
 import Appointment from './pages/Appointment';
 import Profile from './pages/Profile';
+import Profile2 from './pages/Profile2';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 

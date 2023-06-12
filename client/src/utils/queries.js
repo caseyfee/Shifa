@@ -1,5 +1,17 @@
 import { gql } from '@apollo/client';
 
+
+export const QUERY_USERS = gql`
+  query QueryPatients {
+    patients {
+      _id
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
 export const QUERY_USER = gql`
  query getUserInfo {
   patients {
