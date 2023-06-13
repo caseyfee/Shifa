@@ -24,11 +24,11 @@ const Profile = () => {
   };
 
   return (
-
-    <div className='h-full pt-24 pb-10'>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 mb-3 p-3 flex-row justify-center">
-          {/* <img
+    
+            <div className='h-full pt-24 pb-10'>
+          <div className="flex-row justify-center container">
+              <div className="col-12 col-md-10 mb-3 p-3 flex-row justify-center">
+                {/* <img
             src={Image}
             alt="global health care"
           /> */}
