@@ -86,7 +86,7 @@ export default function Navbar({ fixed }) {
                         className=" text-lg leading-lg text-white opacity-75"
                       />
                       {/* around span, add Link */}
-                      <Link to="/Profile">
+                      <Link to="/me">
                         <span className="ml-2" >{Auth.getProfile().data.firstName}'s Profile</span>
                       </Link>
                     </div>
