@@ -1,5 +1,6 @@
 import React from 'react';
-import Image from '../../images/white-slogan2.jpg'
+import Image from '../../images/white-slogan2.jpg';
+// import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -69,6 +70,8 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
+
+                      {/* use Link and use routes to match more closely to App.js */}
                       <span className="ml-2 " onClick={() => window.location.href = "/"}>Home</span>
                     </div>
 
@@ -80,7 +83,10 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
-                      <span className="ml-2" onClick={() => window.location.href = "/me"}>{Auth.getProfile().data.firstName}'s Profile</span>
+                      {/* around span, add Link */}
+                      {/* <Link to="Profile"> */}
+                        <span className="ml-2" onClick={() => window.location.href = "/me"}>{Auth.getProfile().data.firstName}'s Profile</span>
+                      {/* </Link> */}
                     </div>
 
                     <div
