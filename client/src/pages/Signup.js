@@ -9,9 +9,9 @@ import Auth from '../utils/auth';
 const Signup = () => {
 
   const imageStyle = {
-    height: '70%',
+    height: '60%',
     width: '100%', 
-    marginTop:'30%'                                                                                                                                                                                                                                                                                                
+    marginTop:'40%'                                                                                                                                                                                                                                                                                                
   };
 
   const [formState, setFormState] = useState({
@@ -57,8 +57,8 @@ const Signup = () => {
 
   return (
 
-    <main className="flex-row justify-center">
-      <div className="col-10">
+    <main className="flex-row justify-center container">
+      <div className="col-10 sm:pt-20">
         <section className="bg-white">
           <div className="flex justify-center h-screen">
 

@@ -1,52 +1,25 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-// import Image from "../images/global-healthcare.avif";
-
-// import MedicalHistoryList from '../components/MedicalHistoryList';
-import MedicalHistoryForm from '../components/MedicalHistoryForm';
-
-import Auth from '../utils/auth';
-
-
-import { QUERY_MEDICALHISTORIES } from '../utils/queries';
 
 const Home = () => {
 
-  const { loading, data } = useQuery(QUERY_MEDICALHISTORIES);
-  const medicalHistorys = data?.medicalHistorys || [];
-
   return (
-    <main>
-      <div className="flex-row justify-center">
+    
+    <div style={{
+      height: "screen",
+      width:"full",
+      backgroundSize: 'cover',
+      backgroundImage: `url(${require('../images/seattle.jpg')})`,
+      backgroundAttachment: 'fixed',  
+      backgroundPosition: 'center'
+    }}>
 
-        {Auth.loggedIn() ? (
-          <>
-            <div
-              className="col-12 col-md-10 mb-3 p-3"
-              style={{ border: '1px dotted #1a1a1a' }}
-            >
-              <MedicalHistoryForm />
-            </div>
+    <div className='h-screen'>
+    <div className=' pt-40 pb-20'>
+    <div className="h-full flex-row justify-center p-5 ">
+    <div className="col-12 col-xl-7 flex-row justify-center pt-10 pb-10 "
+            style={{ border: '1px dotted #1a1a1a', backgroundColor: "#ffffff", opacity:".95" }}>
 
-            {/* <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <MedicalHistoryList
-              medicalHistorys={medicalHistorys}
-              title="Some Feed for MedicalHistory(s)..."
-            />
-          )}
-          </div> */}
-
-          </>
-        ) : (
-          <>
-            <div className="col-12 col-md-10 mt-40 p-3">
-              {/* <img
-            src={Image}
-            alt="global health care"
-          /> */}
+        <h1 className="flex flex-wrap justify-center font-bold pb-4">Our Mission </h1> 
               <p>
                 We believe that <strong> healthcare is a right, not a privilege </strong>. We are working to create a future where everyone has access to quality healthcare.</p>
               <p>
@@ -60,15 +33,13 @@ const Home = () => {
               <p>
                 We are driven by a sense of social responsibility and a desire to make a positive impact on the lives of our patients and the community at large. By continuously seeking innovation, embracing evidence-based practices, and fostering partnerships, we aspire to be a trusted healthcare provider that contributes to the overall health and resilience of our society.
               </p>
-
-            </div>
-          </>
-        )}
-
-
-
+    
       </div>
-    </main>
+      </div>
+      </div>
+    </div>
+    </div>
+         
   );
 };
 

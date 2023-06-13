@@ -56,7 +56,7 @@ const Login = (props) => {
 
   return (
 
-    <main className="flex-row justify-center">
+    <main className="flex-row justify-center container">
       <div className="col-10">
         <section className="bg-white">
           <div className="flex justify-center h-screen">

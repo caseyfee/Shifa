@@ -82,7 +82,12 @@ query getUserHistorys {
 }
 `;
 
+
+
+
 // seems like it should be different?
+
+
 export const QUERY_MEDICALHISTORIES = gql`
   # query medicalHistories($medicalHistoryId: ID!) {
   query medicalHistories {

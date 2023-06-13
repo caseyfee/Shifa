@@ -15,10 +15,8 @@ const resolvers = {
 
     // medicalHistorys: async (_, { patient }) => {
     medicalHistorys: async (_, args, context) => {
-      // const params = patient ? { patient } : {};
-      // return MedicalHistory.find(params).sort({ createdAt: -1 });
-      // const params = patient ? { patient } : {};
-      return MedicalHistory.find().sort({ createdAt: -1 });
+      // TODO: get id from context
+      return MedicalHistory.findById(params).sort({ createdAt: -1 });
     },
     myMedicalHistory: async (_, args, context) => {
       if (context.user) {
@@ -29,8 +27,8 @@ const resolvers = {
     // medicalHistory: async (_, { medicalHistoryId }) => {
     //   return MedicalHistory.findOne({ _id: medicalHistoryId });
     // },
-    medicalHistory: async (_, { patientId }) => {
-      return MedicalHistory.findOne({ _id: patientId });
+    medicalHistory: async (_, { medicalHistoryId }) => {
+      return MedicalHistory.findOneById(medicalHistoryId);
     },
   },
 
@@ -59,7 +57,6 @@ const resolvers = {
 
       return { token, patient };
     },
-
     addMedicalHistory: async (_, { medicalHistory }, context) => {
       try {
         const patientMedicalHistory = await MedicalHistory.create({

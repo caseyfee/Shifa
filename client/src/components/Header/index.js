@@ -1,5 +1,6 @@
 import React from 'react';
-import Image from '../../images/white-slogan2.jpg'
+import Image from '../../images/white-slogan2.jpg';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -32,7 +33,7 @@ export default function Navbar({ fixed }) {
 
     <>
  <nav className="fixed top-0 z-30 w-full flex items-center justify-between bg-cyan-500 py-2 shadow-xl">
-      <div className="container flex flex-wrap items-center justify-between"> 
+      <div className="containers flex flex-wrap items-center justify-between"> 
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a href="/" className="flex items-center"> 
             <img src={Image} className="" style={logoStyle} alt="Shifa Logo" />
@@ -69,7 +70,11 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
-                      <span className="ml-2 " onClick={() => window.location.href = "/"}>Home</span>
+
+                      {/* use Link and use routes to match more closely to App.js */}
+                      <Link to="/">
+                      <span className="ml-2 text-white">Home</span>
+                      </Link>
                     </div>
 
                     <div
@@ -80,7 +85,10 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
-                      <span className="ml-2" onClick={() => window.location.href = "/me"}>{Auth.getProfile().data.firstName}'s Profile</span>
+                      {/* around span, add Link */}
+                      <Link to="/me">
+                        <span className="ml-2 text-white" >{Auth.getProfile().data.firstName}'s Profile</span>
+                      </Link>
                     </div>
 
                     <div
@@ -91,7 +99,9 @@ export default function Navbar({ fixed }) {
                         color="white"
                         className=" text-lg leading-lg text-white opacity-75"
                       />
-                      <span className="ml-2" onClick={() => window.location.href = "/appointment"}>Appointment</span>
+                      <Link to="/appointment">
+                      <span className="ml-2 text-white" >Appointment</span>
+                      </Link>
                     </div>
 
                     <div
@@ -109,9 +119,10 @@ export default function Navbar({ fixed }) {
                   </>
                 ) : (
                   <>
-                    <a
+                  {/* home link */}
+                    <Link
                       className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
-                      href="/"
+                      to="/"
                     >
                       <FontAwesomeIcon
                         icon={faHome}
@@ -119,11 +130,12 @@ export default function Navbar({ fixed }) {
                         className=" text-lg leading-lg text-white opacity-75"
                       />
                       <span className="ml-2">Home</span>
-                    </a>
+                    </Link>
 
-                    <a
+                  {/* about link */}
+                    <Link
                       className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
-                      href="/about"
+                      to="/about"
                     >
                       <FontAwesomeIcon
                         icon={faAddressCard}
@@ -131,11 +143,12 @@ export default function Navbar({ fixed }) {
                         className=" text-lg leading-lg text-white opacity-75"
                       />
                       <span className="ml-2">About Us</span>
-                    </a>
+                    </Link>
 
-                    <a
+                    {/* login link */}
+                    <Link
                       className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
-                      href="/Login"
+                      to="/Login"
                     >
                       <FontAwesomeIcon
                         icon={faRightToBracket}
@@ -143,11 +156,12 @@ export default function Navbar({ fixed }) {
                         className="text-lg leading-lg text-white opacity-75"
                       />
                       <span className="ml-2">Login</span>
-                    </a>
+                    </Link>
 
-                    <a
+                    {/* signup link */}
+                    <Link
                       className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
-                      href="/Signup"
+                      to="/Signup"
                     >
                       <FontAwesomeIcon
                         icon={faUserPlus}
@@ -155,7 +169,7 @@ export default function Navbar({ fixed }) {
                         className="text-lg leading-lg text-white opacity-75"
                       />
                       <span className="ml-2">Register</span>
-                    </a>
+                    </Link>
 
                   </>
                 )}
