@@ -32,7 +32,7 @@ export default function Navbar({ fixed }) {
 
     <>
  <nav className="fixed top-0 z-30 w-full flex items-center justify-between bg-cyan-500 py-2 shadow-xl">
-      <div className="container flex flex-wrap items-center justify-between"> 
+      <div className="containers flex flex-wrap items-center justify-between"> 
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a href="/" className="flex items-center"> 
             <img src={Image} className="" style={logoStyle} alt="Shifa Logo" />

@@ -265,7 +265,7 @@ const MedicalHistoryForm = () => {
 
   // render the page elements
   return (
-    <div>
+    <div className='bg-white'>
       <h3>New Patient Medical History Form</h3>
 
       
