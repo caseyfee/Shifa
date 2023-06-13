@@ -5,14 +5,18 @@
 At our non-profit doctor's office, our mission is to provide compassionate, accessible, and high-quality healthcare services to individuals in need, regardless of their socioeconomic status. We are dedicated to improving the health and well-being of our community by delivering comprehensive medical care and promoting preventive measures.
 
 ## Table of Contents
-- [Description](#description) 
-- [HowtoUse] (#HowtoUse)
-- [Troubleshooting] (#troubleshooting)
-- [NextSteps] (#nextSteps)
-- [Technology] (#technology)
-- [originalIdea] (#idea)
-- [Credits](#credits) 
-- [Criteria](#criteria)
+- [Shifa](#shifa)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+- [How to Use Shifa](#how-to-use-shifa)
+  - [How to Sign into Shifa](#how-to-sign-into-shifa)
+- [Troubleshooting](#troubleshooting)
+- [Next Steps:](#next-steps)
+- [Technology](#technology)
+- [Idea](#idea)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Credits](#credits)
+
 
 # How to Use Shifa
 

@@ -5,24 +5,20 @@ const medicalHistorySchema = new Schema({
 
   medicalHistoryText: {
     type: String,
-    // required: 'You need to leave a medicalHistory!',
     minlength: 1,
     maxlength: 280,
     trim: true,
   },
   gender: {
     type: String,
-    // required:true,
     trim: true,
   },
   age: {
     type: String,
-    // required:true,
     trim: true,
   },
   dob: {
     type: String,
-    // required:true,
     trim: true,
   },
   symptomOne: {
@@ -76,11 +72,11 @@ const medicalHistorySchema = new Schema({
   //       maxlength: 280,
   //     },
   //     commentAuthor: {
-    // if we need this we need to figure out which one to use:
-        // type: Schema.Types.ObjectId,
-        // ref:"user",
-        // or
-        // type: String,
+  // if we need this we need to figure out which one to use:
+  // type: Schema.Types.ObjectId,
+  // ref:"user",
+  // or
+  // type: String,
 
   //       required: true,
   //     },

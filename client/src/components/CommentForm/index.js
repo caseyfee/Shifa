@@ -70,14 +70,14 @@ const CommentForm = ({ medicalHistoryId }) => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Message
+                Add Comment
               </button>
             </div>
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to see your profile, make appointments, or message a medical professional. Please{' '}
+          You need to be logged in to share your medicalHistorys. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
