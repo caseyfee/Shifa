@@ -16,7 +16,7 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
   background:#F6F8F8
 }
 
@@ -27,7 +27,7 @@ html {
  */
 body {
   margin: 0;
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /**
@@ -67,7 +67,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -110,7 +110,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -361,15 +361,19 @@ END NORMALIZE CSS
 html,
 body {
   min-height: 100%;
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   color: #1a1a1a;
+}
+
+.back{
+  color:#04243F;
 }
 
 h1,
@@ -378,7 +382,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
