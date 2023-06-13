@@ -1,37 +1,37 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 
-// import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT } from '../../utils/mutations';
 
-// import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
-// const CommentForm = ({ medicalHistoryId }) => {
-//   const [commentText, setCommentText] = useState('');
-//   const [characterCount, setCharacterCount] = useState(0);
+const CommentForm = ({ medicalHistoryId }) => {
+  const [commentText, setCommentText] = useState('');
+  const [characterCount, setCharacterCount] = useState(0);
 
-//   const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
 
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-//     try {
-//       const { data } = await addComment({
-//         variables: {
-//           medicalHistoryId,
-//           commentText,
-//           commentAuthor: Auth.getProfile().data.patientname,
-//         },
-//       });
+    try {
+      const { data } = await addComment({
+        variables: {
+          medicalHistoryId,
+          commentText,
+          commentAuthor: Auth.getProfile().data.patientname,
+        },
+      });
 
-//       setCommentText('');
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
+      setCommentText('');
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-//   const handleChange = (event) => {
-//     const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
     if (name === 'commentText' && value.length <= 400) {
       setCommentText(value);
@@ -70,14 +70,14 @@
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Message
+                Add Comment
               </button>
             </div>
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to see your profile, make appointments, or message a medical professional. Please{' '}
+          You need to be logged in to share your medicalHistorys. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -85,4 +85,4 @@
   );
 };
 
-// export default CommentForm;
+export default CommentForm;

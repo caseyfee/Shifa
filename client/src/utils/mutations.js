@@ -100,26 +100,26 @@ export const ADD_USERHIST = gql`
 
 
 
-// export const ADD_COMMENT = gql`
-//   mutation addComment(
-//     $medicalHistoryId: ID!
-//     $commentText: String!
-//     $commentAuthor: String!
-//   ) {
-//     addComment(
-//       medicalHistoryId: $medicalHistoryId
-//       commentText: $commentText
-//       commentAuthor: $commentAuthor
-//     ) {
-//       _id
-//       medicalHistoryText
-//       medicalHistoryAuthor
-//       createdAt
-//       comments {
-//         _id
-//         commentText
-//         createdAt
-//       }
-//     }
-//   }
-// `;
+export const ADD_COMMENT = gql`
+  mutation addComment(
+    $medicalHistoryId: ID!
+    $commentText: String!
+    $commentAuthor: String!
+  ) {
+    addComment(
+      medicalHistoryId: $medicalHistoryId
+      commentText: $commentText
+      commentAuthor: $commentAuthor
+    ) {
+      _id
+      medicalHistoryText
+      medicalHistoryAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`;
