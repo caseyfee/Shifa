@@ -39,30 +39,23 @@ const resolvers = {
 
     login: async (_, { email, password }) => {
       const patient = await Patient.findOne({ email });
-
       if (!patient) {
         throw new AuthenticationError('No patient found with this email address');
       }
-
       const correctPw = await patient.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(patient);
-
       return { token, patient };
     },
 
-    addMedicalHistory: async (_, {
-      medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve 
-    }) => {
+    addMedicalHistory: async (_, {userHistory}) => {
       const medicalHistory = await MedicalHistory.create({ 
-        medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve
+        ...userHistory
       });
       await Patient.findById(
-         {patientId: _id} ,
+         {_id: patientId} ,
         { $addToSet: { medicalHistorys: medicalHistory._id } }
       );
       console.log("----- \n", medicalHistory);
@@ -75,7 +68,7 @@ const resolvers = {
     //   return MedicalHistory.findOneAndUpdate(
     //     { _id: medicalHistoryId },
     //     {
-    //       $addToSet: { comments: { commentText, commentAuthor } },
+          // $addToSet: { comments: { commentText, commentAuthor } },
     //     },
     //     {
     //       new: true,

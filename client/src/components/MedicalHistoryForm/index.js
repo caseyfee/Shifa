@@ -4,8 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_MEDICALHIST } from '../../utils/mutations';
 import { QUERY_MEDICALHISTORIES } from '../../utils/queries';
-import { ADD_USERHIST } from '../../utils/mutations';
-import { QUERY_USERHISTORIES } from '../../utils/queries';
+// import { ADD_USERHIST } from '../../utils/mutations';
+// import { QUERY_USERHISTORIES } from '../../utils/queries';
 
 
 import { QUERY_ME } from '../../utils/queries';
@@ -120,11 +120,9 @@ import symptomChecks from './symptoms';
 
 const MedicalHistoryForm = () => {
 
-  const [medicalHistory, setMedicalHistory] = useState({
-
-    medicalHistoryText: '',
-
-    userHistory: {
+  const [medicalHistory, setMedicalHistory] = useState({ 
+    medicalHistory: {
+      medicalHistoryText: '',
       firstName: '',
       lastName: '',
       gender: '',
@@ -152,7 +150,7 @@ const MedicalHistoryForm = () => {
 
         cache.writeQuery({
           query: QUERY_MEDICALHISTORIES,
-          data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
+          data: { medicalHistorys: [addMedicalHistory, ...medicalHistory] },
         });
         console.log(medicalHistorys);
       } catch (e) {
@@ -172,21 +170,21 @@ const MedicalHistoryForm = () => {
   });
 
 
-  const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
-    update(cache, { data: { addUserHistory } }) {
-      try {
-        const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
+  // const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
+  //   update(cache, { data: { addUserHistory } }) {
+  //     try {
+  //       const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
 
-        cache.writeQuery({
-          query: QUERY_MEDICALHISTORIES,
-          data: { userHistorys: [addUserHistory, ...userHistorys] },
-        });
-        console.log(userHistorys);
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
+  //       cache.writeQuery({
+  //         query: QUERY_MEDICALHISTORIES,
+  //         data: { userHistorys: [addUserHistory, ...userHistorys] },
+  //       });
+  //       console.log(userHistorys);
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   },
+  // });
 
 
 
@@ -201,9 +199,9 @@ const MedicalHistoryForm = () => {
         },
       });
 
-      await addUserHistory({
+      await addMedicalHistory({
         variables: {
-          userHistory: medicalHistory.userHistory,
+          MedicalHistory: medicalHistory,
         },
       });
       console.log(data);
@@ -286,12 +284,12 @@ const MedicalHistoryForm = () => {
                     type="text"
                     id={key}
                     name={key}
-                    value={medicalHistory.userHistory.key}
+                    value={medicalHistory.key}
                     placeholder="Enter your information"
                     onChange={handleChange}
                     required
                   />
-                  {medicalHistory.userHistory.key === '' && (
+                  {medicalHistory.key === '' && (
                     <p className="text-red-500 text-xs mt-1">This field is required</p>
                   )}
                 </div>
@@ -307,7 +305,7 @@ const MedicalHistoryForm = () => {
                     type="checkbox"
                     id={key}
                     name={key}
-                    checked={medicalHistory.userHistory.key}
+                    checked={medicalHistory.key}
                     onChange={handleChange}
                     />
                   <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
