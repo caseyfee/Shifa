@@ -31,37 +31,28 @@ export const ADD_USER = gql`
 
 // WE NEED IT:- (MEDICALHISTORYFORM - INDEX.JS)
 export const ADD_MEDICALHIST = gql`
-  mutation addMedicalHistory($medicalHistoryText: String!, $medicalHistoryAuthor: String!) {
-    addMedicalHistory(medicalHistoryText: $medicalHistoryText, medicalHistoryAuthor: $medicalHistoryAuthor) {
-      _id
-      medicalHistoryText
-      medicalHistoryAuthor
-      createdAt
-
-      firstName
-      lastName
-      gender
-      age
-      dob
-      symptomOne
-      symptomTwo
-      symptomThree
-      symptomFour
-      symptomFive
-      symptomSix
-      symptomSeven
-      symptomEight
-      symptomNine
-      symptomTen
-      symptomEleven
-      symptomTwelve
-
-      comments {
-        _id
-        commentText
-      }
-    }
+mutation Mutation($medicalHistory: MedicalHistoryInput!) {
+  addMedicalHistory(medicalHistory: $medicalHistory) {
+    _id
+    gender
+    age
+    dob
+    symptomOne
+    symptomTwo
+    symptomThree
+    symptomFour
+    symptomFive
+    symptomSix
+    symptomSeven
+    symptomEight
+    symptomNine
+    symptomTen
+    symptomEleven
+    symptomTwelve
+    medicalHistoryText
+    createdAt
   }
+}
 `;
 
 

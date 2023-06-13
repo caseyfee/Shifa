@@ -14,13 +14,18 @@ const resolvers = {
     },
 
     // medicalHistorys: async (_, { patient }) => {
-    medicalHistorys: async () => {
+    medicalHistorys: async (_, args, context) => {
       // const params = patient ? { patient } : {};
       // return MedicalHistory.find(params).sort({ createdAt: -1 });
       // const params = patient ? { patient } : {};
       return MedicalHistory.find().sort({ createdAt: -1 });
     },
-
+    myMedicalHistory: async (_, args, context) => {
+      if (context.user) {
+        return Patient.findOne({ _id: context.user._id }).populate("medicalHistorys");
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     // medicalHistory: async (_, { medicalHistoryId }) => {
     //   return MedicalHistory.findOne({ _id: medicalHistoryId });
     // },
@@ -55,21 +60,25 @@ const resolvers = {
       return { token, patient };
     },
 
-      addMedicalHistory: async (_, { medicalHistory, patientId }) => {
-      const patientMedicalHistory = await MedicalHistory.create({
-        ...medicalHistory,
-        patientId: patientId,
-      });
-    
-      await Patient.findOneAndUpdate(
-        { _id: patientId },
-        { $addToSet: { medicalHistorys: patientMedicalHistory._id } }
-      );
-    
-      console.log("----- \n", patientMedicalHistory);
-      return patientMedicalHistory;
-    },
-    
+    addMedicalHistory: async (_, { medicalHistory }, context) => {
+      try {
+        const patientMedicalHistory = await MedicalHistory.create({
+          ...medicalHistory,
+          patientId: context.user._id,
+        });
+
+        await Patient.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { medicalHistorys: patientMedicalHistory._id } }
+        );
+
+        console.log("----- \n", patientMedicalHistory);
+        return patientMedicalHistory;
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
 
 
     // addComment: async (parent, { medicalHistoryId, commentText, commentAuthor }) => {
