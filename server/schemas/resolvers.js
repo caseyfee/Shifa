@@ -14,13 +14,16 @@ const resolvers = {
     },
 
     // medicalHistorys: async (_, { patient }) => {
-    medicalHistorys: async (_, patientId) => {
-      const params = patientId ? { patientId } : {};
-      // return MedicalHistory.find(params).sort({ createdAt: -1 });
-      // const params = patient ? { patient } : {};
+    medicalHistorys: async (_, args, context) => {
+      // TODO: get id from context
       return MedicalHistory.findById(params).sort({ createdAt: -1 });
     },
-
+    myMedicalHistory: async (_, args, context) => {
+      if (context.user) {
+        return Patient.findOne({ _id: context.user._id }).populate("medicalHistorys");
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     // medicalHistory: async (_, { medicalHistoryId }) => {
     //   return MedicalHistory.findOne({ _id: medicalHistoryId });
     // },
@@ -54,20 +57,24 @@ const resolvers = {
 
       return { token, patient };
     },
+    addMedicalHistory: async (_, { medicalHistory }, context) => {
+      try {
+        const patientMedicalHistory = await MedicalHistory.create({
+          ...medicalHistory,
+          patientId: context.user._id,
+        });
 
-    addMedicalHistory: async (_, {
-      medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve 
-    }) => {
-      const medicalHistory = await MedicalHistory.create({ 
-        medicalHistoryText, gender, age, dob, symptomOne, symptomTwo, symptomThree, symptomFour, symptomFive, symptomSix, symptomSeven, symptomEight, symptomNine, symptomTen, symptomEleven, symptomTwelve
-      });
-      await Patient.findById(
-         {patientId: _id} ,
-        { $addToSet: { medicalHistorys: medicalHistory._id } }
-      );
-      console.log("----- \n", medicalHistory);
-      return medicalHistory;
-    },
+        await Patient.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { medicalHistorys: patientMedicalHistory._id } }
+        );
+
+        console.log("----- \n", patientMedicalHistory);
+        return patientMedicalHistory;
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
 
 

@@ -82,7 +82,8 @@ input PatientCredentials{
   type Query {
     patients: [Patient]
     patient(patientId: ID!): Patient
-    medicalHistorys(patientId: ID!): [MedicalHistory]
+    myMedicalHistory: Patient
+    medicalHistorys(patientId: ID): [MedicalHistory]
     medicalHistory(medicalHistoryId: ID!): MedicalHistory
   }
 
