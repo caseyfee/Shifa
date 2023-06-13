@@ -73,7 +73,7 @@ export default function Navbar({ fixed }) {
 
                       {/* use Link and use routes to match more closely to App.js */}
                       <Link to="/">
-                      <span className="ml-2 ">Home</span>
+                      <span className="ml-2 text-white">Home</span>
                       </Link>
                     </div>
 
@@ -87,7 +87,7 @@ export default function Navbar({ fixed }) {
                       />
                       {/* around span, add Link */}
                       <Link to="/me">
-                        <span className="ml-2" >{Auth.getProfile().data.firstName}'s Profile</span>
+                        <span className="ml-2 text-white" >{Auth.getProfile().data.firstName}'s Profile</span>
                       </Link>
                     </div>
 
@@ -100,7 +100,7 @@ export default function Navbar({ fixed }) {
                         className=" text-lg leading-lg text-white opacity-75"
                       />
                       <Link to="/appointment">
-                      <span className="ml-2" >Appointment</span>
+                      <span className="ml-2 text-white" >Appointment</span>
                       </Link>
                     </div>
 
