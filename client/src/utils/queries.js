@@ -152,20 +152,14 @@ export const QUERY_SINGLE_MEDICALHIST = gql`
 
 // ADDED TODAY 11 JUN
 export const QUERY_ME = gql`
-  query me {
-    me {
+  query MyMedicalHistory {
+  myMedicalHistory {
+    _id
+    firstName
+    lastName
+    email
+    medicalHistorys {
       _id
-      firstName
-      lastName
-      email
-    medicalHistoryText
-    medicalHistoryAuthor
-    createdAt
-      MedicalHistory {
-      
-        _id
-      firstName
-      lastName
       gender
       age
       dob
@@ -181,7 +175,9 @@ export const QUERY_ME = gql`
       symptomTen
       symptomEleven
       symptomTwelve
-      }
+      medicalHistoryText
+      createdAt
     }
   }
+}
 `;

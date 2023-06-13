@@ -4,39 +4,38 @@
 
 
 import React from 'react';
-
-// Import the `useParams()` hook
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
+import formFields from '../MedicalHistoryForm/formFields';
+import symptomChecks from "../MedicalHistoryForm/symptoms"
 import CommentList from '../CommentList';
 import CommentForm from '../CommentForm';
 
-import { QUERY_SINGLE_MEDICALHIST } from '../../utils/queries';
+// import { QUERY_SINGLE_MEDICALHIST } from '../../utils/queries';
 
-const SingleMedicalHistory = () => {
+const SingleMedicalHistory = ({patient}) => {
+  
 
-  // Use `useParams()` to retrieve value of the route parameter `:profileId`
-  const { medicalHistoryId } = useParams();
-
-  const { loading, data } = useQuery(QUERY_SINGLE_MEDICALHIST, {
-    // pass URL parameter
-    variables: { medicalHistoryId: medicalHistoryId },
+  const patientAnswers = {...patient, ...patient.medicalHistorys[0]};
+  delete patientAnswers.medicalHistorys
+  
+  const inputs = [...formFields, ...symptomChecks].map(({key,label})=>{
+    const value = patientAnswers[key] || "";
+    return {
+      key,
+      label,
+      isSymptom: key.includes("symptom"),
+      value
+    }
   });
-
-  const medicalHistory = data?.medicalHistory || {};
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const history = patient.medicalHistorys[0];
+ 
   return (
     <div className="my-3">
       {/* <h1> {title} </h1> */}
       
         <h2 className="bg-cyan-500 text-white p-2 m-0 border rounded-md border-solid" style={{ border: '1px dotted #1a1a1a' }}>
-          {medicalHistory.dob} <br />
+          {patient.dob} <br />
           <span style={{ fontSize: '1rem' }}>
-            Medical Information was collected on :{medicalHistory.createdAt}
+            Medical Information was collected on :{patient.createdAt}
           </span>
         </h2>
         <div className="bg-slate-100 py-4 border rounded-md border-solid" style={{ border: '1px dotted #1a1a1a' }}>
@@ -47,20 +46,44 @@ const SingleMedicalHistory = () => {
               color: "#04243F",
               lineHeight: '2',
             }}
-          > {medicalHistory.gender}
-            {medicalHistory.age}
-            {medicalHistory.symptomOne}
-            {medicalHistory.symptomOne}
-            {medicalHistory.medicalHistoryText}
+          >
+            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+            {inputs.map(({key, label,value, isSymptom}) => {
+              
+              if(isSymptom){
+                return  <><input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-cyan-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  type="checkbox"
+                  id={key}
+                  name={key}
+                  checked={value}/><label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label></>
+              }
+              return <div key={key} >
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={value}
+                  disabled
+                />
+              </div>
+            })}
+          </div>
+             {history.gender}
+            {history.age}
+            {history.symptomOne}
+            {history.symptomOne}
+            {history.medicalHistoryText}
           </blockquote>
         </div>
      
 
       <div className="my-10">
-        <CommentList comments={medicalHistory.comments} />
+        <CommentList comments={history.comments} />
       </div>
       <div className="bg-cyan-500 text-white p-2 m-0 border rounded-md border-solid text-sm" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm medicalHistoryId={medicalHistory._id} />
+        <CommentForm medicalHistoryId={patient._id} />
       </div>
     </div>
   );

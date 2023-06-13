@@ -14,110 +14,6 @@ import Auth from '../../utils/auth';
 import formFields from './formFields';
 import symptomChecks from './symptoms';
 
-// const MedicalHistoryForm = () => {
-
-// const [medicalHistoryText, setMedicalHistoryText] = useState('');
-
-// const [userHistory, setUserHistory] = useState({
-//   firstName: "",
-//   lastName: "",
-//   gender: "",
-//   age: "",
-//   dob: "",
-//   symptomOne: false,
-//   symptomTwo: false,
-//   symptomThree: false,
-//   symptomFour: false,
-//   symptomFive: false,
-//   symptomSix: false,
-//   symptomSeven: false,
-//   symptomEight: false,
-//   symptomNine: false,
-//   symptomTen: false,
-//   symptomEleven: false,
-//   symptomTwelve: false
-// });
-
-// setUserHistory ({
-//   ...userHistory,
-//   [label]: value,
-// })
-
-
-//   const [addMedicalHistory, { error }] = useMutation(ADD_MEDICALHIST, {
-//     update(cache, { data: { addMedicalHistory } }) {
-//       try {
-//         const { medicalHistorys } = cache.readQuery({ query: QUERY_MEDICALHISTORIES });
-
-//         cache.writeQuery({
-//           query: QUERY_MEDICALHISTORIES,
-//           data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
-//         });
-//         console.log(medicalHistorys);
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     },
-//   });
-
-//   const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
-//     update(cache, { data: { addUserHistory } }) {
-//       try {
-//         const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
-
-//         cache.writeQuery({
-//           query: QUERY_MEDICALHISTORIES,
-//           data: { userHistorys: [addUserHistory, ...userHistory] },
-//         });
-//         console.log(userHistorys);
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     },
-//   });
-
-//   // event handler for the submit button
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-
-//     try {
-//       const { data } = await addMedicalHistory({
-//         variables: {
-//           medicalHistoryText,
-//           medicalHistoryAuthor: Auth.getProfile().data.patientname,
-//         },
-//       });
-
-//       await addUserHistory({
-//         variables: {
-//           userHistory
-//         }
-//       })
-// console.log(data);
-//     } catch (err) {
-//       console.error(err);
-//     }
-
-//     setMedicalHistoryText('');
-//     setUserHistory('');
-//     // Add in Success Message and Take them to page that shows their information
-//     // in the database?
-//   };
-
-//   const handleChange = (event) => {
-//     const { name, value, checked } = event.target;
-
-//     if (name === 'medicalHistoryText') {
-//       setMedicalHistoryText(value);
-//     } else if (name.includes("symptom")) {
-//       setUserHistory({ ...userHistory, [name]: checked })
-//     } else {
-//       setUserHistory({ ...userHistory, [name]: value })
-//     }
-//     console.log(name);
-//     console.log(userHistory);
-//   };
-
 const MedicalHistoryForm = () => {
 
   const [medicalHistory, setMedicalHistory] = useState({
@@ -142,104 +38,26 @@ const MedicalHistoryForm = () => {
   });
 
   const [addMedicalHistory, { error }] = useMutation(ADD_MEDICALHIST)
-  // , {
-  //   update(cache, { data: { addMedicalHistory } }) {
-  //     try {
-  //       const { medicalHistorys } = cache.readQuery({ query: QUERY_MEDICALHISTORIES });
-
-  //       cache.writeQuery({
-  //         query: QUERY_MEDICALHISTORIES,
-  //         data: { medicalHistorys: [addMedicalHistory, ...medicalHistorys] },
-  //       });
-  //       console.log(medicalHistorys);
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // to update me object's cache
-  //     const { me } = cache.readQuery({
-  //       query: QUERY_ME
-  //     });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: {
-  //         me: {
-  //           ...me,
-  //           medicalHistorys: [
-  //             ...me.medicalHistorys, addMedicalHistory]
-  //         }
-  //       },
-  //     });
-  //   },
-  // });
-
-
-  // const [addUserHistory, { }] = useMutation(ADD_USERHIST, {
-  //   update(cache, { data: { addUserHistory } }) {
-  //     try {
-  //       const { userHistorys } = cache.readQuery({ query: QUERY_USERHISTORIES });
-
-  //       cache.writeQuery({
-  //         query: QUERY_MEDICALHISTORIES,
-  //         data: { userHistorys: [addUserHistory, ...userHistorys] },
-  //       });
-  //       console.log(userHistorys);
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   },
-  // });
-
-
-
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
+
+      const medicalHistoryInput = {...medicalHistory}
+      delete medicalHistoryInput.firstName;
+      delete medicalHistoryInput.lastName;
+
       await addMedicalHistory({
         variables: {
-          medicalHistory
+          medicalHistory: medicalHistoryInput
         }
       })
-      // const { data } = await addMedicalHistory({
-      //   variables: {
-      //     medicalHistoryText: medicalHistory.medicalHistoryText,
-      //     medicalHistoryAuthor: Auth.getProfile().data.patientname,
-      //   },
-      // });
-
-      // await addUserHistory({
-      //   variables: {
-      //     userHistory: medicalHistory.userHistory,
-      //   },
-      // });
-      // console.log(data);
+     
     } catch (err) {
       console.error(err);
     }
 
-    // setMedicalHistory({
-    //   medicalHistoryText: '',
-    //   userHistory: {
-    //     firstName: '',
-    //     lastName: '',
-    //     gender: '',
-    //     age: '',
-    //     dob: '',
-    //     symptomOne: false,
-    //     symptomTwo: false,
-    //     symptomThree: false,
-    //     symptomFour: false,
-    //     symptomFive: false,
-    //     symptomSix: false,
-    //     symptomSeven: false,
-    //     symptomEight: false,
-    //     symptomNine: false,
-    //     symptomTen: false,
-    //     symptomEleven: false,
-    //     symptomTwelve: false,
-    //   },
-    // });
   };
 
   const handleChange = (event) => {
@@ -253,18 +71,12 @@ const MedicalHistoryForm = () => {
     } else if (name.includes('symptom')) {
       setMedicalHistory((prevMedicalHistory) => ({
         ...prevMedicalHistory,
-        // userHistory: {
-        //   ...prevMedicalHistory.userHistory,
           [name]: checked,
-        // },
       }));
     } else {
       setMedicalHistory((prevMedicalHistory) => ({
         ...prevMedicalHistory,
-        // userHistory: {
-        //   ...prevMedicalHistory.userHistory,
           [name]: value,
-        // },
       }));
     }
   };

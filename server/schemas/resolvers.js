@@ -52,7 +52,7 @@ const resolvers = {
       const token = signToken(patient);
       return { token, patient };
     },
-    addMedicalHistory: async (_, { medicalHistory }, context) => {
+    addMedicalHistory: async (_, {medicalHistory}, context) => {
       try {
         const patientMedicalHistory = await MedicalHistory.create({
           ...medicalHistory,
