@@ -8,7 +8,6 @@ const MedicalHistoryList = ({ medicalHistorys, title }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
       {medicalHistorys &&
         medicalHistorys.map((medicalHistory) => (
           <div key={medicalHistory._id} className="card mb-3">
