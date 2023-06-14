@@ -47,24 +47,24 @@ input PatientCredentials{
     password: String
 }
 
-# input MedicalHistoryInput {
-#   gender: String
-#   age: String
-#   dob: String
-#   medicalHistoryText: String
-#   symptomOne: Boolean
-#   symptomTwo: Boolean
-#   symptomThree: Boolean
-#   symptomFour: Boolean
-#   symptomFive: Boolean
-#   symptomSix: Boolean
-#   symptomSeven: Boolean
-#   symptomEight: Boolean
-#   symptomNine: Boolean
-#   symptomTen: Boolean
-#   symptomEleven: Boolean
-#   symptomTwelve: Boolean
-# }
+input MedicalHistoryInput {
+  gender: String
+  age: String
+  dob: String
+  medicalHistoryText: String
+  symptomOne: Boolean
+  symptomTwo: Boolean
+  symptomThree: Boolean
+  symptomFour: Boolean
+  symptomFive: Boolean
+  symptomSix: Boolean
+  symptomSeven: Boolean
+  symptomEight: Boolean
+  symptomNine: Boolean
+  symptomTen: Boolean
+  symptomEleven: Boolean
+  symptomTwelve: Boolean
+}
 
 
   # type Comment {
@@ -90,10 +90,7 @@ input PatientCredentials{
   type Mutation {
     addPatient(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addMedicalHistory(medicalHistoryText: String, gender: String, age: String, dob: String, symptomOne: Boolean,
-    symptomTwo:Boolean, symptomThree: Boolean, symptomFour: Boolean, symptomFive:Boolean,
-    symptomSix: Boolean, symptomSeven: Boolean, symptomEight: Boolean, symptomNine: Boolean, symptomTen: Boolean,  
-    symptomEleven: Boolean, symptomTwelve: Boolean): MedicalHistory
+    addMedicalHistory(medicalHistory: MedicalHistoryInput!): MedicalHistory
     # addComment(
     #   medicalHistoryId: ID!
     #   commentText: String!

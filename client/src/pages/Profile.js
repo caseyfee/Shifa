@@ -8,12 +8,12 @@ import SingleMedicalHistory from '../components/SingleMedicalHistory';
 import Auth from '../utils/auth';
 
 
-import { QUERY_SINGLE_MEDICALHIST } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Profile = () => {
 
-  const { loading, data } = useQuery(QUERY_SINGLE_MEDICALHIST);
-  const singleMedicalHistory = data?.singleMedicalHistory || [];
+  const { loading, data } = useQuery(QUERY_ME);
+  const myMedicalHistory = data?.myMedicalHistory || {}
 
   return (
     
@@ -27,7 +27,7 @@ const Profile = () => {
               <div>Loading...</div>
             ) : (
               <SingleMedicalHistory
-              singleMedicalHistory={singleMedicalHistory}
+              patient={myMedicalHistory}
                 title="Your medical history..."
               />
             )}

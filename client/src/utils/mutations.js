@@ -31,7 +31,7 @@ export const ADD_USER = gql`
 
 // WE NEED IT:- (MEDICALHISTORYFORM - INDEX.JS)
 export const ADD_MEDICALHIST = gql`
-mutation Mutation($medicalHistory: MedicalHistoryInput!) {
+mutation addMedicalHistory($medicalHistory: MedicalHistoryInput!) {
   addMedicalHistory(medicalHistory: $medicalHistory) {
     _id
     gender
