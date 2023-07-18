@@ -4,6 +4,8 @@
 
 At our non-profit doctor's office, our mission is to provide compassionate, accessible, and high-quality healthcare services to individuals in need, regardless of their socioeconomic status. We are dedicated to improving the health and well-being of our community by delivering comprehensive medical care and promoting preventive measures.
 
+View the live website here: https://shifa-wecare.herokuapp.com/
+
 ## Table of Contents
 - [Shifa](#shifa)
   - [Description](#description)
